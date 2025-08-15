@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+    domains: ["modern-islamic-matrimony-frontend.vercel.app"],
+  },
+};
 
 export default nextConfig;
