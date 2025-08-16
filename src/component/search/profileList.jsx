@@ -12,52 +12,75 @@ export default function ProfileList({ profiles }) {
     setActiveTab('about');
   };
 
+  const calculateAge = (dob) => {
+    if (!dob) return 'N/A';
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+
   return (
     <>
       {/* Profile List */}
-      <div className="space-y-6 max-w-4xl mx-auto px-4">
-        {profiles.map((p, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center gap-6 p-6"
-          >
-            <div className="w-24 h-24 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden shadow-inner">
-              {p.image ? (
-                <img src={p.image} alt={p.name} className="object-cover w-full h-full" />
-              ) : (
-                <span className="text-gray-400 text-sm">No Img</span>
-              )}
-            </div>
+      <div className="space-y-6  mx-auto px-4">
+        {profiles.map((p, i) => {
+          const name = `${p?.personalInfo?.first_name || ''} ${p?.personalInfo?.last_name || ''}`.trim();
+          const age = calculateAge(p?.personalInfo?.date_of_birth);
+          const profession = p?.careerInfo?.occupation || 'Unknown';
+          const education = p?.careerInfo?.education_level || 'N/A';
+          const location = p?.careerInfo?.work_location || p?.familyInfo?.city || 'N/A';
+          const status = p?.familyInfo?.marital_status || 'Single';
+          const sect = p?.religiousInfo?.is_sunni_muslims === 'Yes' ? 'Sunni' : 'Shia';
+          const image = p?.profileImages?.[0]?.image_url || null;
 
-            <div className="flex-1 min-w-0">
-              <h2 className="text-2xl font-bold text-gray-800">
-                {p.name}, <span className="font-normal text-gray-600">{p.age}</span>
-              </h2>
-              <p className="text-sm text-gray-500 truncate">
-                {p.profession || 'Unknown'} | {p.education || 'N/A'}
-              </p>
-              <p className="text-xs text-gray-400 mt-1 truncate">
-                {p.status || 'Single'} | <span className="uppercase">{p.sect || 'N/A'}</span>
-              </p>
-              {p.location && (
-                <p className="text-xs text-gray-400 mt-1 truncate">
-                  <FaMapMarkerAlt className="inline text-red-600 mr-1" />
-                  {p.location}
-                </p>
-              )}
-            </div>
-
-            <button
-              onClick={() => setSelectedProfile(p)}
-              className="ml-auto bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-300"
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center gap-6 p-6"
             >
-              <FaEye /> View
-            </button>
-          </motion.div>
-        ))}
+              <div className="w-24 h-24 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden shadow-inner">
+                {image ? (
+                  <img src={image} alt={name} className="object-cover w-full h-full" />
+                ) : (
+                  <span className="text-gray-400 text-sm">No Img</span>
+                )}
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {name}, <span className="font-normal text-gray-600">{age}</span>
+                </h2>
+                <p className="text-sm text-gray-500 truncate">
+                  {profession} | {education}
+                </p>
+                <p className="text-xs text-gray-400 mt-1 truncate">
+                  {status} | <span className="uppercase">{sect}</span>
+                </p>
+                {location && (
+                  <p className="text-xs text-gray-400 mt-1 truncate">
+                    <FaMapMarkerAlt className="inline text-red-600 mr-1" />
+                    {location}
+                  </p>
+                )}
+              </div>
+
+              <button
+                onClick={() => setSelectedProfile(p)}
+                className="ml-auto bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-300"
+              >
+                <FaEye className="inline mr-2" /> View
+              </button>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Modal */}
@@ -89,9 +112,9 @@ export default function ProfileList({ profiles }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div className="w-full h-64 bg-gray-100 rounded-3xl flex items-center justify-center overflow-hidden">
-                  {selectedProfile.image ? (
+                  {selectedProfile.profileImages?.[0]?.image_url ? (
                     <img
-                      src={selectedProfile.image}
+                      src={selectedProfile.profileImages[0].image_url}
                       className="object-cover w-full h-full"
                       alt="Profile"
                     />
@@ -100,14 +123,18 @@ export default function ProfileList({ profiles }) {
                   )}
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold">{selectedProfile.name}</h3>
-                  <p className="text-lg text-gray-600">{selectedProfile.age} years old</p>
-                  <p><FaMapMarkerAlt className="inline text-red-600" /> {selectedProfile.location}</p>
-                  <p><FaBriefcase className="inline text-red-600" /> {selectedProfile.profession}</p>
-                  <p><FaGraduationCap className="inline text-red-600" /> {selectedProfile.education}</p>
-                  <p><FaHeart className="inline text-red-600" /> {selectedProfile.status}</p>
+                  <h3 className="text-2xl font-semibold">
+                    {selectedProfile.personalInfo?.first_name} {selectedProfile.personalInfo?.last_name}
+                  </h3>
+                  <p className="text-lg text-gray-600">
+                    {calculateAge(selectedProfile.personalInfo?.date_of_birth)} years old
+                  </p>
+                  <p><FaMapMarkerAlt className="inline text-red-600" /> {selectedProfile.careerInfo?.work_location || selectedProfile.familyInfo?.city || 'N/A'}</p>
+                  <p><FaBriefcase className="inline text-red-600" /> {selectedProfile.careerInfo?.occupation || 'N/A'}</p>
+                  <p><FaGraduationCap className="inline text-red-600" /> {selectedProfile.careerInfo?.education_level || 'N/A'}</p>
+                  <p><FaHeart className="inline text-red-600" /> {selectedProfile.familyInfo?.marital_status || 'N/A'}</p>
                   <span className="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">
-                    {selectedProfile.sect}
+                    {selectedProfile.religiousInfo?.is_sunni_muslims === 'Yes' ? 'Sunni' : 'Shia'}
                   </span>
                 </div>
               </div>
@@ -128,19 +155,35 @@ export default function ProfileList({ profiles }) {
                 ))}
               </nav>
 
-              <section className="text-gray-700 space-y-4">
+              <section className="text-gray-700 space-y-4 max-h-[40vh] overflow-y-auto">
                 {activeTab === 'about' && (
                   <>
-                    <p><strong>About Me:</strong> {selectedProfile.about || 'No details provided.'}</p>
-                    <p><strong>Health Conditions:</strong> {selectedProfile.health || 'N/A'}</p>
-                    <p><strong>Expectations:</strong> {selectedProfile.expectations || 'N/A'}</p>
+                    <p><strong>About Me:</strong> {selectedProfile.personalInfo?.about_me || 'No details provided.'}</p>
+                    <p><strong>Health Conditions:</strong> {selectedProfile.personalInfo?.health_conditions || 'N/A'}</p>
+                    <p><strong>Expectations:</strong> {selectedProfile.personalInfo?.expectations || 'N/A'}</p>
                   </>
                 )}
                 {activeTab === 'preferences' && (
-                  <p>No preference data available.</p>
+                  <>
+                    <p><strong>Education:</strong> {selectedProfile.preferences?.education || 'N/A'}</p>
+                    <p><strong>Age Range:</strong> {selectedProfile.preferences?.min_age} - {selectedProfile.preferences?.max_age}</p>
+                    <p><strong>Marriage Preferred:</strong> {selectedProfile.preferences?.marriage_preferred || 'N/A'}</p>
+                    <p><strong>Location Preference:</strong> {selectedProfile.preferences?.location || 'N/A'}</p>
+                    <p><strong>Willing to Relocate:</strong> {selectedProfile.preferences?.relocate || 'N/A'}</p>
+                  </>
                 )}
                 {activeTab === 'lifestyle' && (
-                  <p>Prayer: 5 times a day. Hijab: Occasionally. Work: Flexible.</p>
+                  <>
+                    {/* <p><strong>Sunni Muslim:</strong> {selectedProfile.religiousInfo?.is_sunni_muslims || 'N/A'}</p> */}
+                    {/* <p><strong>Revert Muslim:</strong> {selectedProfile.religiousInfo?.is_revert_muslim || 'N/A'}</p> */}
+                    <p><strong>Prayer Frequency:</strong> {selectedProfile.religiousInfo?.prayer_frequency || 'N/A'}</p>
+                    <p><strong>Quran Reading:</strong> {selectedProfile.religiousInfo?.quran_reading || 'N/A'}</p>
+                    <p><strong>Beard:</strong> {selectedProfile.religiousInfo?.beard || 'N/A'}</p>
+                    <p><strong>Hijab:</strong> {selectedProfile.religiousInfo?.hijab || 'N/A'}</p>
+                    {/* <p><strong>Occupation:</strong> {selectedProfile.careerInfo?.occupation || 'N/A'}</p> */}
+                    {/* <p><strong>Annual Income:</strong> {selectedProfile.careerInfo?.annual_income || 'N/A'}</p> */}
+                    <p><strong>Work Location:</strong> {selectedProfile.careerInfo?.work_location || 'N/A'}</p>
+                  </>
                 )}
               </section>
             </motion.div>

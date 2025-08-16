@@ -21,7 +21,7 @@ export default function Login() {
       toast.success("Logged in successfully!");
       console.log(data)
        localStorage.setItem("user", JSON.stringify(data.data.user));
-  localStorage.setItem("token", data.data.token);
+  sessionStorage.setItem("token", data.data.token);
       setTimeout(() => {
         router.push("/dashboard");
       }, 1500); // delay for UX
@@ -89,7 +89,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70"
+            className="w-full bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70  cursor-pointer"
           >
             {isPending ? "Signing in..." : "Sign In"}
           </button>
