@@ -32,7 +32,6 @@ const CareerForm = forwardRef(
       mutationFn: careerEducationUpdated,
       onMutate: () => setLoading(true),
       onSuccess: (data) => {
-        console.log(data)
         localStorage.setItem("user", JSON.stringify(data?.data?.user));
         setLoading(false);
         if (typeof onNext === "function") {

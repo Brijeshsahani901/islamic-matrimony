@@ -26,8 +26,6 @@ export default function AuthGuard({ children }) {
     }
 
     const idToken = sessionStorage.getItem("token");
-    console.log(idToken)
-
     if (!idToken) {
       setIsCheckingAuth(true);
 

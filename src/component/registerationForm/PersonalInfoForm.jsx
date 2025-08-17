@@ -22,7 +22,6 @@ const [formData, setFormData] = useState({
     mutationFn: personalInfoUpdated,
      onMutate: () => setLoading(true),
     onSuccess: (data) => {
-      console.log(data)
        setLoading(false)
       onNext(formData);
     },

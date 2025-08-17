@@ -15,8 +15,6 @@ const ReligiousInfoForm = forwardRef(({ onNext,setLoading,initialValues }, ref) 
   });
 
   const [errors, setErrors] = useState({});
-  console.log(errors)
-  console.log(formData)
 
   const mutation = useMutation({
     mutationFn: religiousInfoUpdated,

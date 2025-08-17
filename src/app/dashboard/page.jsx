@@ -116,6 +116,18 @@ export default function Dashboard() {
               <p className="text-gray-500 text-sm">View and edit your profile information.</p>
             </div>
           </div>
+
+          <div
+  onClick={() => router.push('/payment')}
+  className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 flex items-start gap-4 cursor-pointer transform hover:scale-[1.02] hover:shadow-xl transition-all duration-300"
+>
+  <span className="text-red-600 text-3xl">💳</span>
+  <div>
+    <h4 className="text-xl font-semibold text-gray-800">Make a Payment</h4>
+    <p className="text-gray-500 text-sm">Secure your subscription or membership.</p>
+  </div>
+</div>
+
         </div>
       </section>
     </div>
