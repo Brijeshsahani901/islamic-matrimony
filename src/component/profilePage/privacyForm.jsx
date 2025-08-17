@@ -343,7 +343,7 @@ function ToggleSetting({ label, description, value, onToggle, disabled }) {
           className="sr-only peer"
         />
         <div
-          className={`w-11 h-6 rounded-full transition-all ${
+          className={`w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all ${
             value ? "bg-red-600" : "bg-gray-400"
           }`}
         ></div>

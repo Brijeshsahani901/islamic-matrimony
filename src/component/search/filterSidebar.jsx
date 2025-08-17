@@ -68,7 +68,7 @@ const FilterSidebar = ({ filters, setFilters, clearFilters }) => {
           onChange={(e) =>
             setFilters({ ...filters, search: e.target.value })
           }
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm placeholder-gray-400 focus:ring-2 focus:ring-gray-400 focus:outline-none"
+          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
         />
       </div>
 
@@ -95,14 +95,28 @@ const FilterSidebar = ({ filters, setFilters, clearFilters }) => {
           <label className="block text-sm font-medium text-gray-600 mb-1 capitalize">
             {key.replace('_', ' ')}
           </label>
-          <Select
-            options={opts}
-            value={opts.find((opt) => opt.value === filters[key])}
-            onChange={handleSelectChange(key)}
-            className="text-sm"
-            classNamePrefix="react-select"
-            isSearchable
-          />
+     <Select
+  options={opts}
+  value={opts.find((opt) => opt.value === filters[key])}
+  onChange={handleSelectChange(key)}
+  className="rounded-lg transition-all"
+  classNamePrefix="react-select"
+  isSearchable
+  styles={{
+    control: (base, state) => ({
+      ...base,
+      borderColor: state.isFocused ? '#dc2626' : '#d1d5db', // red if focused, gray otherwise
+      boxShadow: state.isFocused
+        ? '0 0 0 2px rgba(220, 38, 38, 0.5)' // red-600 focus ring
+        : 'none',
+      '&:hover': {
+        borderColor: state.isFocused ? '#dc2626' : '#9ca3af', // red if focused, gray-400 otherwise
+      },
+    }),
+  }}
+/>
+
+
         </div>
       ))}
     </motion.div>

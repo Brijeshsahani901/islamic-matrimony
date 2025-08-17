@@ -403,10 +403,10 @@ function FormField({ label, name, value, editable, onChange, type = "text", erro
             name={name}
             value={value || ""}
             onChange={onChange}
-            className={`mt-1 block w-full border rounded px-3 py-2 ${
+            className={`w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all ${
               error
                 ? "border-red-500 focus:border-red-600"
-                : "border-gray-300 focus:border-blue-500"
+                : "border-gray-300 "
             } transition`}
           />
           <AnimatePresence>
