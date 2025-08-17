@@ -24,7 +24,7 @@ export default function Dashboard() {
           <div className="flex items-center space-x-2 animate-fade-in">
             <span className="text-red-600 text-3xl">❤️</span>
             <span className="text-xl font-bold text-red-700 tracking-wide">
-              WIFE4LIFE
+              Marrying Muslims
             </span>
           </div>
 

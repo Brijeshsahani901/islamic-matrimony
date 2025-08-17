@@ -5,12 +5,12 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "What is WIFE4LIFE?",
-    answer: "WIFE4LIFE is a platform designed to help individuals find compatible marriage partners with family and guardian involvement.",
+    question: "What is Marrying Muslims?",
+    answer: "Marrying Muslims is a platform designed to help individuals find compatible marriage partners with family and guardian involvement.",
   },
   {
-    question: "Who can join WIFE4LIFE?",
-    answer: "Anyone seeking a serious and respectful path to marriage can join WIFE4LIFE.",
+    question: "Who can join Marrying Muslims?",
+    answer: "Anyone seeking a serious and respectful path to marriage can join Marrying Muslims.",
   },
   {
     question: "How does guardian (Wali) involvement work?",

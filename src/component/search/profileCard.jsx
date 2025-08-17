@@ -1,19 +1,85 @@
-// components/search/ProfileCard.jsx
-import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaEye } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { useRef, useEffect } from "react";
+import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaEye } from "react-icons/fa";
+import gsap from "gsap";
 
 const ProfileCard = ({ profile }) => {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+
+    // Initial fade and scale in
+    gsap.fromTo(
+      card,
+      { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }
+    );
+
+    function handleMouseMove(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left; // mouse X relative to card
+      const y = e.clientY - rect.top; // mouse Y relative to card
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate offset from center normalized between -1 and 1
+      const offsetX = (x - centerX) / centerX;
+      const offsetY = (y - centerY) / centerY;
+
+      // Multiply by max rotation degrees (smaller for subtle effect)
+      const rotateX = offsetY * 15; // rotateX based on Y offset
+      const rotateY = offsetX * 15; // rotateY based on X offset
+
+      // Elevate shadow and scale slightly for "lifted" effect
+      gsap.to(card, {
+        rotationX: -rotateX,
+        rotationY: rotateY,
+        scale: 1.05,
+        boxShadow: "0 20px 30px rgba(0,0,0,0.2)",
+        transformPerspective: 800,
+        transformOrigin: "center",
+        ease: "power3.out",
+        duration: 0.3,
+      });
+    }
+
+    function handleMouseLeave() {
+      gsap.to(card, {
+        rotationX: 0,
+        rotationY: 0,
+        scale: 1,
+        boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+        ease: "power3.out",
+        duration: 0.6,
+      });
+    }
+
+    card.addEventListener("mousemove", handleMouseMove);
+    card.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      card.removeEventListener("mousemove", handleMouseMove);
+      card.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
   return (
-    <motion.div
-      className="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
-      whileHover={{ scale: 1.02 }}
+    <div
+      ref={cardRef}
+      className="bg-white p-5 rounded-xl shadow-md cursor-pointer"
+      style={{ transformStyle: "preserve-3d", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}
     >
       <div className="flex items-center gap-4">
-        <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+        <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-xs overflow-hidden">
           {profile.image ? (
-            <img src={profile.image} alt="Profile" className="object-cover w-full h-full rounded" />
+            <img
+              src={profile.image}
+              alt="Profile"
+              className="object-cover w-full h-full rounded"
+            />
           ) : (
-            'No Image'
+            "No Image"
           )}
         </div>
 
@@ -38,10 +104,10 @@ const ProfileCard = ({ profile }) => {
         </div>
       </div>
 
-      <button className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded flex justify-center items-center gap-2 text-sm transition-all">
+      <button className="mt-4 w-full cursor-pointer bg-red-600 hover:bg-red-700 text-white py-2 rounded flex justify-center items-center gap-2 text-sm transition-all">
         <FaEye /> View Profile
       </button>
-    </motion.div>
+    </div>
   );
 };
 

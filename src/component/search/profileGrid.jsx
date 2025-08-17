@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useState } from "react";
 import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaEye, FaHeart } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
@@ -88,7 +88,7 @@ export default function ProfileGrid({ profiles }) {
               <p className="text-sm text-gray-500 mt-2 line-clamp-2">{about}</p>
               <button
                 onClick={() => setSelectedProfile(p)}
-                className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg flex justify-center items-center gap-2 text-sm transition-all duration-200"
+                className="mt-4 cursor-pointer w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg flex justify-center items-center gap-2 text-sm transition-all duration-200"
               >
                 <FaEye /> View Profile
               </button>

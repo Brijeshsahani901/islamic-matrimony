@@ -1,15 +1,18 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { userLogin } from "@/api/auth.api";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { FiMail, FiLock } from "react-icons/fi";
+import { FaRegHeart } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const router = useRouter();
 
   const {
@@ -19,15 +22,14 @@ export default function Login() {
     mutationFn: userLogin,
     onSuccess: (data) => {
       toast.success("Logged in successfully!");
-      console.log(data)
-       localStorage.setItem("user", JSON.stringify(data.data.user));
-  sessionStorage.setItem("token", data.data.token);
+      localStorage.setItem("user", JSON.stringify(data.data.user));
+      sessionStorage.setItem("token", data.data.token);
       setTimeout(() => {
         router.push("/dashboard");
-      }, 1500); // delay for UX
+      }, 1500);
     },
     onError: (err) => {
-      console.error(err)
+      console.error(err);
       toast.error(err.message || "Login failed. Please try again.");
     },
   });
@@ -37,75 +39,130 @@ export default function Login() {
     login({ email, password });
   };
 
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" },
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-pink-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8 sm:p-10">
+      <motion.div
+        {...fadeIn}
+        className="w-full max-w-md bg-white shadow-xl rounded-xl p-8 sm:p-10"
+      >
+        {/* Logo */}
         <div className="flex flex-col items-center mb-6">
           <div className="flex items-center gap-2 text-red-600 text-3xl font-bold">
-            <span className="text-4xl">❤️</span>
-            <span>WIFE4LIFE</span>
+            <FaRegHeart className="text-4xl" />
+            <span>Marrying Muslims</span>
           </div>
           <p className="text-gray-500 text-sm">Marriage The Halal Way</p>
         </div>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-1 text-center">Welcome Back</h2>
+        {/* Title */}
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-2xl font-semibold text-gray-800 mb-1 text-center"
+        >
+          Welcome Back
+        </motion.h2>
         <p className="text-sm text-gray-500 text-center mb-6">
           Sign in to your account to continue
         </p>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
+          {/* Email Field */}
+          <motion.div {...fadeIn}>
             <label className="block text-sm text-gray-700 mb-1">Email Address</label>
-            <input
-              type="email"
-              placeholder="example@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
-            />
-          </div>
+            <div className="relative">
+              <FiMail className="absolute left-3 top-3.5 text-gray-400" />
+              <input
+                type="email"
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
+              />
+            </div>
+          </motion.div>
 
-          <div>
+          {/* Password Field */}
+          <motion.div {...fadeIn} transition={{ delay: 0.2 }}>
             <label className="block text-sm text-gray-700 mb-1">Password</label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none"
-            />
-          </div>
+            <div className="relative">
+              <FiLock className="absolute left-3 top-3.5 text-gray-400" />
+              <input
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
+              />
+            </div>
+          </motion.div>
 
-          <div className="flex justify-between items-center text-sm">
+          {/* Options */}
+          <motion.div
+            {...fadeIn}
+            transition={{ delay: 0.3 }}
+            className="flex justify-between items-center text-sm"
+          >
             <label className="flex items-center space-x-2 text-gray-600">
               <input type="checkbox" className="accent-red-500" />
               <span>Remember me</span>
             </label>
-            <a href="#" className="text-red-500 hover:underline">Forgot password?</a>
-          </div>
+            <a href="#" className="text-red-500 hover:underline">
+              Forgot password?
+            </a>
+          </motion.div>
 
-          <button
+          {/* Submit Button */}
+          <motion.button
+            {...fadeIn}
+            transition={{ delay: 0.4 }}
             type="submit"
             disabled={isPending}
-            className="w-full bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70  cursor-pointer"
+            className="w-full bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70"
           >
             {isPending ? "Signing in..." : "Sign In"}
-          </button>
+          </motion.button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
-          Don’t have an account?
-          <a href="/register" className="text-red-500 hover:underline font-medium">Sign Up</a>
-        </p>
+        {/* Sign up link */}
+        <motion.p
+          {...fadeIn}
+          transition={{ delay: 0.5 }}
+          className="text-center text-sm text-gray-600 mt-6"
+        >
+          Don’t have an account?{" "}
+          <Link href="/register" className="text-red-500 hover:underline font-medium cursor-pointer">
+            Sign Up
+          </Link>
+        </motion.p>
 
-        <p className="text-xs text-center text-gray-400 mt-4">
-          By signing in, you agree to our
-          <a href="#" className="text-red-500 hover:underline">Terms of Service</a> and
-          <a href="#" className="text-red-500 hover:underline">Privacy Policy</a>.
-        </p>
-      </div>
+        {/* Legal links */}
+        <motion.p
+          {...fadeIn}
+          transition={{ delay: 0.6 }}
+          className="text-xs text-center text-gray-400 mt-4"
+        >
+          By signing in, you agree to our{" "}
+          <Link href="#" className="text-red-500 hover:underline">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <a href="#" className="text-red-500 hover:underline">
+            Privacy Policy
+          </a>
+          .
+        </motion.p>
+      </motion.div>
     </div>
   );
 }

@@ -116,7 +116,7 @@ const renderStep = () => {
           <div className="flex items-center space-x-1">
             <span className="text-red-600 text-2xl font-bold">❤️</span>
             <span className="text-xl font-semibold text-red-700">
-              WIFE4LIFE
+              Marrying Muslims
             </span>
           </div>
         </div>

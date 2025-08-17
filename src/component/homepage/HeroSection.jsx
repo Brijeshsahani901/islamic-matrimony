@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
+import toast from "react-hot-toast";
 
 export default function HeroSection() {
   return (
@@ -15,10 +17,21 @@ export default function HeroSection() {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-          <button className="bg-red-600 text-white text-lg px-7 py-2 rounded-md font-semibold hover:bg-red-700 transition">
+          <Link href="/register" className="bg-red-600 text-white text-lg px-7 py-2 rounded-md font-semibold hover:bg-red-700 transition">
             Sign Up Today
-          </button>
-          <button className="border border-red-600 text-lg text-red-600 px-7 py-2 rounded-md font-semibold hover:bg-red-50 transition">
+          </Link>
+          <button    onClick={() =>
+            toast.error("Please register before Browsing profiles.", {
+              style: {
+                background: "#dc2626", // red-600
+                color: "#fff",
+              },
+              iconTheme: {
+                primary: "#fff",
+                secondary: "#dc2626",
+              },
+            })
+          } className="border border-red-600 text-lg text-red-600 px-7 py-2 rounded-md font-semibold hover:bg-red-50 transition cursor-pointer">
             Browse Profiles
           </button>
         </div>

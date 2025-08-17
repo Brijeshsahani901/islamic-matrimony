@@ -1,70 +1,132 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Search() {
   return (
-    <section className="py-16 px-4 bg-white">
-      <h2 className="text-3xl font-bold text-center mb-10">Search</h2>
+    <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 min-h-screen">
+      {/* Heading */}
+      <div className="text-center mb-16">
+        <h2 className="text-5xl font-extrabold text-red-700 tracking-tight leading-tight">
+          🔍 Find Your Match
+        </h2>
+        <p className="text-gray-600 mt-3 text-lg max-w-xl mx-auto">
+          Refine your search and explore profiles curated just for you
+        </p>
+      </div>
 
       {/* Filters */}
-      <div className="max-w-5xl mx-auto bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-          <select className="border border-gray-200 rounded-md w-full px-4 py-2 text-sm">
-            <option>Age Range</option>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-5xl mx-auto bg-white rounded-2xl border border-gray-200 p-8 shadow-xl backdrop-blur mb-12"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+          {/* Add dummy options */}
+          <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+            <option disabled selected>
+              Age Range
+            </option>
             <option>18-25</option>
-            <option>26-30</option>
-            <option>31-40</option>
+            <option>26-35</option>
+            <option>36-45</option>
+            <option>46+</option>
           </select>
 
-          <select className="border border-gray-200 rounded-md w-full px-4 py-2 text-sm">
-            <option>Country</option>
-            <option>India</option>
+          <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+            <option disabled selected>
+              Country
+            </option>
             <option>USA</option>
             <option>UK</option>
+            <option>Canada</option>
+            <option>Pakistan</option>
+            <option>Other</option>
           </select>
 
-          <select className="border border-gray-200 rounded-md w-full px-4 py-2 text-sm">
-            <option>Gender</option>
+          <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+            <option disabled selected>
+              Gender
+            </option>
             <option>Male</option>
             <option>Female</option>
           </select>
         </div>
 
-        {/* Search Button */}
-        <button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-md text-sm flex justify-center items-center gap-2">
+        {/* Search Button with Toast */}
+        <button
+          onClick={() =>
+            toast.error("Please register before searching profiles.", {
+              style: {
+                background: "#dc2626", // red-600
+                color: "#fff",
+              },
+              iconTheme: {
+                primary: "#fff",
+                secondary: "#dc2626",
+              },
+            })
+          }
+          className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg text-sm flex justify-center items-center gap-2 transition-all duration-200 cursor-pointer"
+        >
           🔍 Search Profiles
         </button>
-      </div>
+      </motion.div>
 
       {/* Profiles Grid */}
-      <div className="mt-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="mt-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {profiles.map((profile, index) => (
-          <div
+          <motion.div
             key={index}
-            className="border border-gray-200 rounded-lg p-6 text-center shadow-sm hover:shadow-md transition"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.4 }}
+            viewport={{ once: true }}
+            className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 text-center relative overflow-hidden"
           >
-            <div className="w-24 h-24 mx-auto mb-4">
+            <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r from-red-500 to-red-700"></div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="w-24 h-24 mx-auto mb-5 transition-transform"
+            >
               <img
                 src={profile.image}
                 alt={profile.name}
-                className="w-full h-full object-cover rounded-full bg-gray-100"
+                className="w-full h-full object-cover rounded-full bg-gray-100 border-4 border-white shadow-md"
               />
-            </div>
-            <h3 className="font-semibold text-lg">{profile.name}</h3>
-            <p className="text-sm text-gray-600">
+            </motion.div>
+
+            <h3 className="font-semibold text-xl text-red-700">
+              {profile.name}
+            </h3>
+            <p className="text-sm text-gray-500 mt-1">
               {profile.age} years old • {profile.gender}
             </p>
-            <p className="mt-4 text-sm text-gray-800">
-              <strong>About Me</strong><br />
-              {profile.about}
-            </p>
-          </div>
+
+            <div className="mt-4 text-sm text-gray-700 leading-relaxed text-left">
+              <strong className="block text-gray-900 mb-1 text-sm">
+                About Me
+              </strong>
+              <p className="line-clamp-4">{profile.about}</p>
+            </div>
+          </motion.div>
         ))}
       </div>
-       <button className="w-[30%] m-auto mt-15 text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-md text-xl flex justify-center items-center gap-2">
-          Sign up Today to see full profile
-        </button>
+
+      {/* Call to Action */}
+      <div className="mt-20 flex justify-center">
+        <Link
+          href="/register"
+          className="bg-gradient-to-r from-red-500 to-red-700 text-white text-lg font-bold px-8 py-3 rounded-full shadow-xl transition-all hover:bg-red-800 hover:scale-105"
+        >
+          ✨ Sign up Today to see full profiles
+        </Link>
+      </div>
     </section>
   );
 }
@@ -78,7 +140,7 @@ const profiles = [
     about:
       "Practicing Sunni Muslim who values faith, honesty, and family life. Seeking a pious partner for a halal marriage.",
     image:
-      "https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-muslim-ramadan-flatart-icons-outline-flatarticons.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKKOdmJz8Z2pDtYgFgR2u9spABvNNPKYYtGw&s",
   },
   {
     name: "Fatima Zahra",
@@ -87,7 +149,7 @@ const profiles = [
     about:
       "Modest and respectful sister, committed to Islamic values. Looking for a righteous Sunni Muslim husband.",
     image:
-      "https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-muslim-woman-ramadan-flatart-icons-outline-flatarticons.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrmiL3n-nigHVpz7Kb4XOWqb-e5oDCExiyUQ&s",
   },
   {
     name: "Usman Farooq",
@@ -96,6 +158,6 @@ const profiles = [
     about:
       "Sunni Muslim who follows the Sunnah and values sincerity. Wants to build a faith-centered home with a practicing wife.",
     image:
-      "https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-muslim-ramadan-flatart-icons-outline-flatarticons.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKKOdmJz8Z2pDtYgFgR2u9spABvNNPKYYtGw&s",
   },
 ];
