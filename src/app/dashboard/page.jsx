@@ -24,7 +24,7 @@ export default function Dashboard() {
           {/* Logo */}
           <div className="flex items-center animate-fade-in">
           <img
-                                    src="/images/logo.png"
+                                    src="/images/Logo.png"
                                     alt="Logo"
                                     width={100}
                                     height={100}

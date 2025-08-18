@@ -80,7 +80,7 @@ export default function ProfilePage() {
           <div className="flex items-center space-x-1">
             {/* <span className="text-red-600 text-4xl font-bold">❤️</span> */}
               <img
-                              src="/images/logo.png"
+                              src="/images/Logo.png"
                               alt="Logo"
                               width={100}
                               height={100}
