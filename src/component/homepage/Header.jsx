@@ -19,14 +19,14 @@ export default function Header() {
         <Link href="/" className="flex items-center">
           {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
             <img
-        src="/images/Logo.png"
+        src="/images/Logo.PNG"
         alt="Logo"
         width={100}
         height={100}
         className="hover:scale-110 transition-transform duration-500 ease-in-out"
         priority
       />
-          <span className="text-xl font-semibold text-red-700">Marrying Muslims</span>
+          <span className="text-xl font-bold text-red-700">Marrying Muslims</span>
        
         </Link>
 

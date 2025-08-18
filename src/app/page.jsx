@@ -81,15 +81,15 @@ export default function Home() {
     locoScroll.current = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
-      multiplier: isMobile ? 2.5 : 1.0, // ✅ Fast scroll on mobile, normal on desktop
+      multiplier: isMobile ? 1.8 : 1.0, // ✅ Fast scroll on mobile, normal on desktop
       lerp: 0.1,
       smartphone: {
         smooth: true,
-        multiplier: 2.5, // ✅ Fast scroll on mobile
+        multiplier: 1.8, // ✅ Fast scroll on mobile
       },
       tablet: {
         smooth: true,
-        multiplier: 2.0, // ✅ Optional: also fast on tablets
+        multiplier: 1.8, // ✅ Optional: also fast on tablets
       },
     });
 

@@ -77,7 +77,7 @@ export default function Register() {
         <div className="flex items-center">
           {/* <span className="text-4xl text-red-600">❤️</span> */}
               <img
-                  src="/images/Logo.png"
+                  src="/images/Logo.PNG"
                   alt="Logo"
                   width={100}
                   height={100}
