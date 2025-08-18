@@ -1,6 +1,12 @@
 // "use client";
 import React, { useState } from "react";
-import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaEye, FaHeart } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaBriefcase,
+  FaGraduationCap,
+  FaEye,
+  FaHeart,
+} from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProfileGrid({ profiles }) {
@@ -24,16 +30,21 @@ export default function ProfileGrid({ profiles }) {
     }
     return age;
   };
+  console.log(selectedProfile?.personalInfo?.gender)
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {profiles.map((p, i) => {
-        const name = `${p?.personalInfo?.first_name || "No Name"} ${p?.personalInfo?.last_name || ""}`.trim();
+        const name = `${p?.personalInfo?.first_name || "No Name"} ${
+          p?.personalInfo?.last_name || ""
+        }`.trim();
         const age = calculateAge(p?.personalInfo?.date_of_birth);
         const profession = p?.careerInfo?.occupation || "Not specified";
         const education = p?.careerInfo?.education_level || "Not specified";
-        const location = p?.careerInfo?.work_location || p?.familyInfo?.city || "Unknown";
+        const location =
+          p?.careerInfo?.work_location || p?.familyInfo?.city || "Unknown";
         const maritalStatus = p?.familyInfo?.marital_status || "N/A";
+        const gender = p?.personalInfo?.gender || "N/A";
         const sect =
           p?.religiousInfo?.is_sunni_muslims === "Yes"
             ? "Sunni"
@@ -59,14 +70,28 @@ export default function ProfileGrid({ profiles }) {
                 {sect}
               </span>
               {image ? (
-                <img src={image} alt={name} className="w-full h-full object-cover" />
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full h-full object-cover"
+                />
               ) : (
-                <span className="text-gray-400 text-sm">No Image</span>
+                <img
+                  src={
+                    gender == "male"
+                      ? "/images/MaleProfile.jpeg"
+                      : "/images/femaleProfile.png"
+                  }
+                  alt="Profile"
+                  className="object-cover w-full h-full rounded"
+                />
               )}
             </div>
             <div className="p-4 space-y-1">
               <div className="flex items-center justify-between mb-1">
-                <h2 className="text-lg font-semibold text-gray-900 truncate">{name}</h2>
+                <h2 className="text-lg font-semibold text-gray-900 truncate">
+                  {name}
+                </h2>
                 <span className="text-xs text-gray-500">{age} yrs</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -131,28 +156,40 @@ export default function ProfileGrid({ profiles }) {
                       className="object-cover w-full h-full"
                     />
                   ) : (
-                    <span className="text-gray-400 font-semibold">No Image</span>
+                    <img
+              src= {selectedProfile?.personalInfo?.gender == "male" ?"/images/MaleProfile.jpeg"  : "/images/femaleProfile.png"} 
+              alt="Profile"
+              className="object-cover w-full h-full rounded"
+            />
                   )}
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-2xl font-semibold">
-                    {selectedProfile.personalInfo.first_name} {selectedProfile.personalInfo.last_name}
+                    {selectedProfile.personalInfo.first_name}{" "}
+                    {selectedProfile.personalInfo.last_name}
                   </h3>
                   <p className="text-lg text-gray-600">
-                    {calculateAge(selectedProfile.personalInfo.date_of_birth)} years old
+                    {calculateAge(selectedProfile.personalInfo.date_of_birth)}{" "}
+                    years old
                   </p>
                   <p className="flex items-center gap-2">
                     <FaMapMarkerAlt className="text-red-600 inline" />{" "}
-                    {selectedProfile.careerInfo?.work_location || selectedProfile.familyInfo?.city || "Unknown"}
+                    {selectedProfile.careerInfo?.work_location ||
+                      selectedProfile.familyInfo?.city ||
+                      "Unknown"}
                   </p>
                   <p className="flex items-center gap-2">
-                    <FaBriefcase className="text-red-600 inline" /> {selectedProfile.careerInfo?.occupation || "Not specified"}
+                    <FaBriefcase className="text-red-600 inline" />{" "}
+                    {selectedProfile.careerInfo?.occupation || "Not specified"}
                   </p>
                   <p className="flex items-center gap-2">
-                    <FaGraduationCap className="text-red-600 inline" /> {selectedProfile.careerInfo?.education_level || "Not specified"}
+                    <FaGraduationCap className="text-red-600 inline" />{" "}
+                    {selectedProfile.careerInfo?.education_level ||
+                      "Not specified"}
                   </p>
                   <p className="flex items-center gap-2">
-                    <FaHeart className="text-red-600 inline" /> {selectedProfile.familyInfo?.marital_status || "N/A"}
+                    <FaHeart className="text-red-600 inline" />{" "}
+                    {selectedProfile.familyInfo?.marital_status || "N/A"}
                   </p>
                   <span className="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">
                     {selectedProfile.religiousInfo?.is_sunni_muslims === "Yes"
@@ -184,26 +221,44 @@ export default function ProfileGrid({ profiles }) {
                 {activeTab === "about" && (
                   <>
                     <p>
-                      <strong>About Me:</strong> {selectedProfile.personalInfo?.about_me || "No details provided."}
+                      <strong>About Me:</strong>{" "}
+                      {selectedProfile.personalInfo?.about_me ||
+                        "No details provided."}
                     </p>
                     <p>
-                      <strong>Health Conditions:</strong> {selectedProfile.personalInfo?.health_conditions || "N/A"}
+                      <strong>Health Conditions:</strong>{" "}
+                      {selectedProfile.personalInfo?.health_conditions || "N/A"}
                     </p>
                     <p>
-                      <strong>Expectations:</strong> {selectedProfile.personalInfo?.expectations || "N/A"}
+                      <strong>Expectations:</strong>{" "}
+                      {selectedProfile.personalInfo?.expectations || "N/A"}
                     </p>
                   </>
                 )}
 
                 {activeTab === "preferences" && (
                   <>
-                    <p><strong>Education:</strong> {selectedProfile.preferences?.education || "N/A"}</p>
                     <p>
-                      <strong>Age Range:</strong> {selectedProfile.preferences?.min_age} - {selectedProfile.preferences?.max_age}
+                      <strong>Education:</strong>{" "}
+                      {selectedProfile.preferences?.education || "N/A"}
                     </p>
-                    <p><strong>Marriage Preferred:</strong> {selectedProfile.preferences?.marriage_preferred || "N/A"}</p>
-                    <p><strong>Location:</strong> {selectedProfile.preferences?.location || "N/A"}</p>
-                    <p><strong>Willing to Relocate:</strong> {selectedProfile.preferences?.relocate || "N/A"}</p>
+                    <p>
+                      <strong>Age Range:</strong>{" "}
+                      {selectedProfile.preferences?.min_age} -{" "}
+                      {selectedProfile.preferences?.max_age}
+                    </p>
+                    <p>
+                      <strong>Marriage Preferred:</strong>{" "}
+                      {selectedProfile.preferences?.marriage_preferred || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Location:</strong>{" "}
+                      {selectedProfile.preferences?.location || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Willing to Relocate:</strong>{" "}
+                      {selectedProfile.preferences?.relocate || "N/A"}
+                    </p>
                   </>
                 )}
 
@@ -211,13 +266,28 @@ export default function ProfileGrid({ profiles }) {
                   <>
                     {/* <p><strong>Sunni Muslim:</strong> {selectedProfile.religiousInfo?.is_sunni_muslims || "N/A"}</p> */}
                     {/* <p><strong>Revert Muslim:</strong> {selectedProfile.religiousInfo?.is_revert_muslim || "N/A"}</p> */}
-                    <p><strong>Prayer Frequency:</strong> {selectedProfile.religiousInfo?.prayer_frequency || "N/A"}</p>
-                    <p><strong>Quran Reading:</strong> {selectedProfile.religiousInfo?.quran_reading || "N/A"}</p>
-                    <p><strong>Beard:</strong> {selectedProfile.religiousInfo?.beard || "N/A"}</p>
-                    <p><strong>Hijab:</strong> {selectedProfile.religiousInfo?.hijab || "N/A"}</p>
+                    <p>
+                      <strong>Prayer Frequency:</strong>{" "}
+                      {selectedProfile.religiousInfo?.prayer_frequency || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Quran Reading:</strong>{" "}
+                      {selectedProfile.religiousInfo?.quran_reading || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Beard:</strong>{" "}
+                      {selectedProfile.religiousInfo?.beard || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Hijab:</strong>{" "}
+                      {selectedProfile.religiousInfo?.hijab || "N/A"}
+                    </p>
                     {/* <p><strong>Occupation:</strong> {selectedProfile.careerInfo?.occupation || "N/A"}</p> */}
                     {/* <p><strong>Annual Income:</strong> {selectedProfile.careerInfo?.annual_income || "N/A"}</p> */}
-                    <p><strong>Work Location:</strong> {selectedProfile.careerInfo?.work_location || "N/A"}</p>
+                    <p>
+                      <strong>Work Location:</strong>{" "}
+                      {selectedProfile.careerInfo?.work_location || "N/A"}
+                    </p>
                   </>
                 )}
               </section>

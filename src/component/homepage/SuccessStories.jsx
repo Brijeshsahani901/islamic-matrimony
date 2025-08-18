@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 export default function SuccessStories() {
 const videos = [
-  { id: 1, url: "https://online-rishta-main.netlify.app/images/1.mp4" },
-  { id: 2, url: "https://online-rishta-main.netlify.app/images/2.mp4" },
-  { id: 3, url: "https://online-rishta-main.netlify.app/images/3.mp4" } // Matrimony Meet || Creative adda films
+  { id: 1, url: "/videos/1.mp4" },
+  { id: 2, url: "/videos/2.mp4" },
+  { id: 3, url: "/videos/3.mp4" } // Matrimony Meet || Creative adda films
 ];
 
 

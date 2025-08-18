@@ -12,6 +12,7 @@ import { FaTh, FaList, FaSearch, FaFilter } from "react-icons/fa";
 import { fetchProfiles } from "@/api/profile.api";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
+import Image from "next/image";
 
 const useDebounce = (value, delay = 500) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -96,12 +97,19 @@ export default function Search() {
       <header className="fixed top-0 left-0 w-screen bg-white shadow-md z-50">
         <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-red-600 text-3xl font-bold">❤️</span>
-            <span className="text-xl font-bold text-red-700 hidden sm:block">
-              Marrying Muslims
-            </span>
-          </Link>
+          <Link href="/" className="flex items-center">
+          {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
+            <Image
+        src="/images/logo.png"
+        alt="Logo"
+        width={100}
+        height={100}
+        className="hover:scale-110 transition-transform duration-500 ease-in-out"
+        priority
+      />
+          <span className="text-xl font-semibold text-red-700">Marrying Muslims</span>
+       
+        </Link>
 
           {/* Search Bar - Mobile */}
           {isMobile && (
@@ -191,7 +199,7 @@ export default function Search() {
         <div className="flex flex-col md:flex-row gap-6 max-w-[95%] mx-auto">
           {/* Sidebar - Desktop */}
           {!isMobile && (
-        <div className="w-full md:w-72 flex-shrink-0 sticky top-[80px] self-start max-h-[calc(100vh-80px)] overflow-y-auto">
+        <div className="w-full md:w-72 flex-shrink-0 sticky top-[80px] self-start max-h-[calc(100vh-80px)]">
   <FilterSidebar
     filters={filters}
     setFilters={setFilters}

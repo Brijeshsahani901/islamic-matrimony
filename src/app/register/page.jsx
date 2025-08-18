@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiUser, FiLock } from "react-icons/fi";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Register() {
   const router = useRouter();
@@ -73,8 +74,16 @@ export default function Register() {
           ← Back to Home
         </a>
       </div>
-        <div className="flex items-center gap-2">
-          <span className="text-4xl text-red-600">❤️</span>
+        <div className="flex items-center">
+          {/* <span className="text-4xl text-red-600">❤️</span> */}
+              <Image
+                  src="/images/logo.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="hover:scale-110 transition-transform duration-500 ease-in-out"
+                  priority
+                />
           <div>
             <h1 className="text-2xl font-bold text-red-700">Marrying Muslims</h1>
             <p className="text-xs text-gray-600 -mt-1">Marriage The Halal Way</p>

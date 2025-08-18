@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <Providers>
-          <Toaster position="top-center" reverseOrder={false} />
+          <Toaster position="top-right" reverseOrder={false} />
           <AuthGuard>{children}</AuthGuard>
         </Providers>
       </body>

@@ -64,6 +64,8 @@ const ProfileCard = ({ profile }) => {
     };
   }, []);
 
+  console.log(profile)
+
   return (
     <div
       ref={cardRef}
@@ -79,7 +81,11 @@ const ProfileCard = ({ profile }) => {
               className="object-cover w-full h-full rounded"
             />
           ) : (
-            "No Image"
+             <img
+              src="/images/MaleProfile.jpeg"
+              alt="Profile"
+              className="object-cover w-full h-full rounded"
+            />
           )}
         </div>
 

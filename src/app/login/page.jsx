@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { FiMail, FiLock } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ export default function Login() {
       sessionStorage.setItem("token", data.data.token);
       setTimeout(() => {
         router.push("/dashboard");
-      }, 1500);
+      }, 500);
     },
     onError: (err) => {
       console.error(err);
@@ -52,12 +53,22 @@ export default function Login() {
         className="w-full max-w-md bg-white shadow-xl rounded-xl p-8 sm:p-10"
       >
         {/* Logo */}
-        <div className="flex flex-col items-center mb-6">
-          <div className="flex items-center gap-2 text-red-600 text-3xl font-bold">
-            <FaRegHeart className="text-4xl" />
-            <span>Marrying Muslims</span>
-          </div>
-          <p className="text-gray-500 text-sm">Marriage The Halal Way</p>
+        <div className="flex flex-col items-center mb-4">
+           <div className="flex items-center">
+                   {/* <span className="text-4xl text-red-600">❤️</span> */}
+                       <Image
+                           src="/images/logo.png"
+                           alt="Logo"
+                           width={100}
+                           height={100}
+                           className="hover:scale-110 transition-transform duration-500 ease-in-out"
+                           priority
+                         />
+                   <div>
+                     <h1 className="text-2xl font-bold text-red-700">Marrying Muslims</h1>
+                     <p className="text-xs text-gray-600 -mt-1">Marriage The Halal Way</p>
+                   </div>
+                 </div>
         </div>
 
         {/* Title */}
@@ -128,7 +139,7 @@ export default function Login() {
             transition={{ delay: 0.4 }}
             type="submit"
             disabled={isPending}
-            className="w-full bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70"
+            className="w-full cursor-pointer bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70"
           >
             {isPending ? "Signing in..." : "Sign In"}
           </motion.button>

@@ -314,12 +314,6 @@ const PartnerPreferencesForm = ({ initialData = {}, onSave }) => {
               key="edit-btn"
               onClick={handleEdit}
               className="flex items-center gap-2 px-4 py-2 text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-blue-600 hover:text-white transition"
-              whileHover="hover"
-              whileTap="tap"
-              variants={buttonVariants}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
             >
               <PencilSquareIcon className="w-5 h-5" />
               Edit

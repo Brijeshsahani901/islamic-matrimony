@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,10 +16,19 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
       <div className="mx-4 sm:mx-6 lg:mx-10 h-16 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-1">
-          <span className="text-red-600 text-2xl font-bold">❤️</span>
+        <Link href="/" className="flex items-center">
+          {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
+            <Image
+        src="/images/logo.png"
+        alt="Logo"
+        width={100}
+        height={100}
+        className="hover:scale-110 transition-transform duration-500 ease-in-out"
+        priority
+      />
           <span className="text-xl font-semibold text-red-700">Marrying Muslims</span>
-        </div>
+       
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8 font-semibold">

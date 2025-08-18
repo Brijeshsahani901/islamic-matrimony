@@ -134,7 +134,7 @@ const [formData, setFormData] = useState({
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="mt-1 w-full border rounded px-3 py-2 border-gray-300"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
               rows={rows}
               placeholder={placeholder}
             />

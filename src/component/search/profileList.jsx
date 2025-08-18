@@ -230,6 +230,8 @@ export default function ProfileList({ profiles }) {
           const name = `${p?.personalInfo?.first_name || ''} ${p?.personalInfo?.last_name || ''}`.trim();
           const age = calculateAge(p?.personalInfo?.date_of_birth);
           const profession = p?.careerInfo?.occupation || 'Unknown';
+           const gender = p?.personalInfo?.gender || "N/A";
+           console.log(gender)
           const education = p?.careerInfo?.education_level || 'N/A';
           const location = p?.careerInfo?.work_location || p?.familyInfo?.city || 'N/A';
           const status = p?.familyInfo?.marital_status || 'Single';
@@ -245,7 +247,15 @@ export default function ProfileList({ profiles }) {
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center gap-6 p-6"
             >
               <div className="w-24 h-24 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden shadow-inner">
-               <span className="text-gray-400 font-semibold">No Image</span>
+                <img
+                  src={
+                    gender == "male"
+                      ? "/images/MaleProfile.jpeg"
+                      : "/images/femaleProfile.png"
+                  }
+                  alt="Profile"
+                  className="object-cover w-full h-full rounded"
+                />
               </div>
 
               <div className="flex-1 min-w-0">
@@ -306,14 +316,18 @@ export default function ProfileList({ profiles }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div className="w-full h-64 bg-gray-100 rounded-3xl flex items-center justify-center overflow-hidden">
-                  {selectedProfile.profileImages?.[0]?.image_url ? (
+                   {selectedProfile.profileImages?.[0]?.image_url ? (
                     <img
                       src={selectedProfile.profileImages[0].image_url}
                       alt="Profile"
                       className="object-cover w-full h-full"
                     />
                   ) : (
-                    <span className="text-gray-400 font-semibold">No Image</span>
+                    <img
+              src= {selectedProfile?.personalInfo?.gender == "male" ?"/images/MaleProfile.jpeg"  : "/images/femaleProfile.png"} 
+              alt="Profile"
+              className="object-cover w-full h-full rounded"
+            />
                   )}
                 </div>
                 <div className="space-y-2">

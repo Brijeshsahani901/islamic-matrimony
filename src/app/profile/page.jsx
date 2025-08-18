@@ -18,6 +18,7 @@ import PartnerPreferencesForm from "@/component/profilePage/PartenerPreferenceFo
 import CareerForm from "@/component/profilePage/careerForm";
 import PrivacyForm from "@/component/profilePage/privacyForm";
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   UserIcon,
@@ -77,7 +78,15 @@ export default function ProfilePage() {
       <header className="relative top-0 left-0 w-full bg-white shadow z-50">
         <div className="mx-10 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-1">
-            <span className="text-red-600 text-4xl font-bold">❤️</span>
+            {/* <span className="text-red-600 text-4xl font-bold">❤️</span> */}
+              <Image
+                              src="/images/logo.png"
+                              alt="Logo"
+                              width={100}
+                              height={100}
+                              className="hover:scale-110 transition-transform duration-500 ease-in-out"
+                              priority
+                            />
             <span className="text-xl font-semibold text-red-700">
               Marrying Muslims
             </span>

@@ -6,6 +6,7 @@ import PersonalInfoForm from "@/component/registerationForm/PersonalInfoForm";
 import ReligiousInfoForm from "@/component/registerationForm/ReligiousInfoForm";
 import FamilyBackgroundForm from "@/component/registerationForm/FamilyBackgroundForm";
 import CareerEducationForm from "@/component/registerationForm/CareerEducationForm";
+import Image from "next/image";
 
 export default function MultiStepForm() {
   const [step, setStep] = useState(1);
@@ -64,57 +65,64 @@ export default function MultiStepForm() {
     "Career & Education",
   ];
 
-const renderStep = () => {
-  switch (step) {
-    case 1:
-      return (
-        <PersonalInfoForm
-          ref={personalRef}
-          onNext={onStepNext}
-          setLoading={setLoading}
-          initialValues={formValues}
-        />
-      );
-    case 2:
-      return (
-        <ReligiousInfoForm
-          ref={religiousRef}
-          onNext={onStepNext}
-          setLoading={setLoading}
-          initialValues={formValues}
-        />
-      );
-    case 3:
-      return (
-        <FamilyBackgroundForm
-          ref={familyRef}
-          onNext={onStepNext}
-          setLoading={setLoading}
-          initialValues={formValues}
-        />
-      );
-    case 4:
-      return (
-        <CareerEducationForm
-          ref={careerRef}
-          onNext={onStepNext}
-          setLoading={setLoading}
-          initialValues={formValues}
-        />
-      );
-    default:
-      return null;
-  }
-};
-
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <PersonalInfoForm
+            ref={personalRef}
+            onNext={onStepNext}
+            setLoading={setLoading}
+            initialValues={formValues}
+          />
+        );
+      case 2:
+        return (
+          <ReligiousInfoForm
+            ref={religiousRef}
+            onNext={onStepNext}
+            setLoading={setLoading}
+            initialValues={formValues}
+          />
+        );
+      case 3:
+        return (
+          <FamilyBackgroundForm
+            ref={familyRef}
+            onNext={onStepNext}
+            setLoading={setLoading}
+            initialValues={formValues}
+          />
+        );
+      case 4:
+        return (
+          <CareerEducationForm
+            ref={careerRef}
+            onNext={onStepNext}
+            setLoading={setLoading}
+            initialValues={formValues}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
       <header className="relative top-0 left-0 w-full bg-white shadow z-50">
         <div className="mx-10 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-1">
-            <span className="text-red-600 text-2xl font-bold">❤️</span>
+          <div className="flex items-center">
+            {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
+            <Image
+              src="/images/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="hover:scale-110 transition-transform duration-500 ease-in-out"
+              priority
+            />
             <span className="text-xl font-semibold text-red-700">
               Marrying Muslims
             </span>

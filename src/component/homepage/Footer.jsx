@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Logo + Mission */}
         <div className="flex flex-col sm:flex-row items-start gap-4">
           <Image
-            src="https://modern-islamic-matrimony-frontend.vercel.app/images/wife4life.png"
+            src="/images/doItHalala.png"
             alt="Do it the Halal way"
             width={150}
             height={200}

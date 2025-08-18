@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { UserIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -21,15 +22,22 @@ export default function Dashboard() {
       <header className="sticky top-0 left-0 w-full bg-white shadow z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2 animate-fade-in">
-            <span className="text-red-600 text-3xl">❤️</span>
+          <div className="flex items-center animate-fade-in">
+          <Image
+                                    src="/images/logo.png"
+                                    alt="Logo"
+                                    width={100}
+                                    height={100}
+                                    className="hover:scale-110 transition-transform duration-500 ease-in-out"
+                                    priority
+                                  />
             <span className="text-xl font-bold text-red-700 tracking-wide">
               Marrying Muslims
             </span>
           </div>
 
           {/* Avatar + Dropdown */}
-          <Menu as="div" className="relative">
+          <Menu as="div" className="relative cursor-pointer">
             <MenuButton className="h-10 w-10 rounded-full overflow-hidden border border-gray-300 shadow-sm hover:ring-2 ring-red-500 transition">
               <img
                 src="https://modern-islamic-matrimony-frontend.vercel.app/placeholder-user.jpg"
