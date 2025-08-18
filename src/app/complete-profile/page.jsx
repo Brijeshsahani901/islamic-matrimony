@@ -115,7 +115,7 @@ export default function MultiStepForm() {
           {/* Logo */}
           <div className="flex items-center">
             {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
-            <Image
+            <img
               src="/images/logo.png"
               alt="Logo"
               width={100}

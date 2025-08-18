@@ -79,7 +79,7 @@ export default function ProfilePage() {
         <div className="mx-10 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-1">
             {/* <span className="text-red-600 text-4xl font-bold">❤️</span> */}
-              <Image
+              <img
                               src="/images/logo.png"
                               alt="Logo"
                               width={100}

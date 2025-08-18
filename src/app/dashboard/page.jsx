@@ -23,7 +23,7 @@ export default function Dashboard() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center animate-fade-in">
-          <Image
+          <img
                                     src="/images/logo.png"
                                     alt="Logo"
                                     width={100}
