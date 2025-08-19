@@ -25,37 +25,52 @@ export default function Search() {
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto bg-white rounded-2xl border border-gray-200 p-8 shadow-xl backdrop-blur mb-12"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
-          {/* Add dummy options */}
-          <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
-            <option disabled selected>
-              Age Range
-            </option>
-            <option>18-25</option>
-            <option>26-35</option>
-            <option>36-45</option>
-            <option>46+</option>
-          </select>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+  {[0, 1, 2].map((index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.2, duration: 0.5 }}
+    >
+      {index === 0 && (
+        <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+          <option disabled selected>
+            Age Range
+          </option>
+          <option>18-25</option>
+          <option>26-35</option>
+          <option>36-45</option>
+          <option>46+</option>
+        </select>
+      )}
 
-          <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
-            <option disabled selected>
-              Country
-            </option>
-            <option>USA</option>
-            <option>UK</option>
-            <option>Canada</option>
-            <option>Pakistan</option>
-            <option>Other</option>
-          </select>
+      {index === 1 && (
+        <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+          <option disabled selected>
+            Country
+          </option>
+          <option>USA</option>
+          <option>UK</option>
+          <option>Canada</option>
+          <option>Pakistan</option>
+          <option>Other</option>
+        </select>
+      )}
 
-          <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
-            <option disabled selected>
-              Gender
-            </option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
+      {index === 2 && (
+        <select className="border border-gray-300 rounded-lg w-full px-4 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+          <option disabled selected>
+            Gender
+          </option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      )}
+    </motion.div>
+  ))}
+</div>
+
 
         {/* Search Button with Toast */}
         <button
@@ -139,8 +154,7 @@ const profiles = [
     gender: "Male",
     about:
       "Practicing Sunni Muslim who values faith, honesty, and family life. Seeking a pious partner for a halal marriage.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKKOdmJz8Z2pDtYgFgR2u9spABvNNPKYYtGw&s",
+    image: "/images/MaleProfile.jpeg",
   },
   {
     name: "Fatima Zahra",
@@ -148,8 +162,7 @@ const profiles = [
     gender: "Female",
     about:
       "Modest and respectful sister, committed to Islamic values. Looking for a righteous Sunni Muslim husband.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrmiL3n-nigHVpz7Kb4XOWqb-e5oDCExiyUQ&s",
+    image: "/images/femaleProfile.png",
   },
   {
     name: "Usman Farooq",
@@ -157,7 +170,6 @@ const profiles = [
     gender: "Male",
     about:
       "Sunni Muslim who follows the Sunnah and values sincerity. Wants to build a faith-centered home with a practicing wife.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKKOdmJz8Z2pDtYgFgR2u9spABvNNPKYYtGw&s",
+    image: "/images/femaleProfile.png",
   },
 ];
