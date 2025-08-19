@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
+html {
+  font-family: var(--font-inter), sans-serif;
+}
+
+
 html,
 body {
   height: 100%;

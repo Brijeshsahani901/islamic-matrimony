@@ -93,6 +93,30 @@ useEffect(() => {
   };
 }, []);
 
+useEffect(() => {
+  const handleLinkClick = (e) => {
+    const href = e.target.getAttribute("href");
+    if (href && href.startsWith("#") && locoScroll.current) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        locoScroll.current.scrollTo(target);
+      }
+    }
+  };
+
+  // Add event listener to all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", handleLinkClick);
+  });
+
+  return () => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.removeEventListener("click", handleLinkClick);
+    });
+  };
+}, []);
+
 
   return (
     <>

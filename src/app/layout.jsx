@@ -17,8 +17,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en" className={inter.variable}>
+      <body className="antialiased">
         <Providers>
           <Toaster position="top-right" reverseOrder={false} />
           <AuthGuard>{children}</AuthGuard>
@@ -27,3 +27,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

@@ -28,9 +28,9 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-3 text-lg">Quick Links</h3>
           <ul className="space-y-2 text-sm text-gray-300">
-            <li><Link href="#">How It Works</Link></li>
-            <li><Link href="#">Success Stories</Link></li>
-            <li><Link href="#">FAQ</Link></li>
+            <li><Link href="#how-it-works">How It Works</Link></li>
+            <li><Link href="#success-stories">Success Stories</Link></li>
+            <li><Link href="#faq">FAQ</Link></li>
           </ul>
         </div>
 
@@ -38,9 +38,9 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-3 text-lg">Legal</h3>
           <ul className="space-y-2 text-sm text-gray-300">
-            <li><Link href="#">Privacy Policy</Link></li>
-            <li><Link href="#">Terms & Conditions</Link></li>
-            <li><Link href="#">Cookie Policy</Link></li>
+            <li><Link href="privacy-policy">Privacy Policy</Link></li>
+            <li><Link href="terms-and-conditions">Terms & Conditions</Link></li>
+            <li><Link href="cookie-policy">Cookie Policy</Link></li>
           </ul>
         </div>
 

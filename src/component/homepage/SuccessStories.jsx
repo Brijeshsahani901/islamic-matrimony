@@ -18,9 +18,10 @@ const videos = [
   };
 
   return (
-    <section className="py-20 px-4bg-white ">
+    <section id="success-stories" className="py-20 px-4bg-white ">
       {/* Video Section */}
       <motion.div
+
         initial="initial"
         whileInView="whileInView"
         transition="transition"
@@ -37,75 +38,75 @@ const videos = [
         ))}
       </motion.div>
 
-      {/* Our Vision */}
-      <div className="max-w-4xl mx-auto text-center px-4">
+      {/* Our Vision Title */}
+      <div className="max-w-5xl mx-auto text-center mb-12">
         <motion.h2
           {...fadeInUp}
-          className="text-4xl sm:text-5xl font-extrabold text-red-700 mb-8"
+          className="text-4xl sm:text-5xl font-bold text-gray-900 mb-10"
         >
-          ❤️ Our Vision
+          Our Vision
         </motion.h2>
-
-        <motion.p
-          {...fadeInUp}
-          transition={{ ...fadeInUp.transition, delay: 0.2 }}
-          className="text-lg sm:text-xl text-gray-700 mb-16"
-        >
-          Marrying Muslims is more than a matchmaking service — it's a mission to
-          uphold Islamic values and bring hearts together in a halal and
-          meaningful way.
-        </motion.p>
       </div>
 
-      {/* 3 Vision Sections */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center px-4">
-        {/* Section 1: In */}
-        <motion.div
-          {...fadeInUp}
-          transition={{ ...fadeInUp.transition, delay: 0.3 }}
-          className="bg-white p-6 rounded-xl shadow-md border-t-4 border-red-600"
-        >
-          <h3 className="text-2xl font-bold text-red-700 mb-4">In</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Joining Marrying Muslims offers a safe and respectful space for Muslims
-            seeking meaningful connections. Our platform helps you explore
-            potential partners who share your values and beliefs, prioritising
-            privacy and open communication to support lasting partnerships in
-            line with our faith.
-          </p>
-        </motion.div>
+      {/* Vision Boxes: In | Helping | You */}
+    <motion.div
+  initial="initial"
+  whileInView="whileInView"
+  transition="transition"
+  className="px-10 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+>
+  {/* Box 1: In */}
+  <div>
+    <h3 className="text-xl font-semibold text-gray-900 mb-4">In</h3>
+    <motion.div
+      {...fadeInUp}
+      transition={{ ...fadeInUp.transition, delay: 0.2 }}
+      className="bg-red-50 text-left p-6 rounded-xl shadow-sm border border-red-100"
+    >
+      <p className="text-sm text-gray-800 leading-relaxed">
+        Joining Marrying Muslims offers a safe and respectful space for Muslims
+        seeking meaningful connections. Our platform helps you explore potential
+        partners who share your values and beliefs, prioritising privacy and open
+        communication to support lasting partnerships in line with our faith.
+      </p>
+    </motion.div>
+  </div>
 
-        {/* Section 2: Helping */}
-        <motion.div
-          {...fadeInUp}
-          transition={{ ...fadeInUp.transition, delay: 0.5 }}
-          className="bg-white p-6 rounded-xl shadow-md border-t-4 border-red-600"
-        >
-          <h3 className="text-2xl font-bold text-red-700 mb-4">Helping</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Explore detailed profiles that go beyond basic information. Our
-            profiles include insights into likes, values, and relationship
-            aspirations, allowing you to connect on a deeper level. Engage with
-            potential partners through our platform to discover your ideal
-            match.
-          </p>
-        </motion.div>
+  {/* Box 2: Helping */}
+  <div>
+    <h3 className="text-xl font-semibold text-gray-900 mb-4">Helping</h3>
+    <motion.div
+      {...fadeInUp}
+      transition={{ ...fadeInUp.transition, delay: 0.4 }}
+      className="bg-red-50 text-left p-6 rounded-xl shadow-sm border border-red-100"
+    >
+      <p className="text-sm text-gray-800 leading-relaxed">
+        Explore detailed profiles that go beyond basic information. Our profiles
+        include insights into likes, values, and relationship aspirations,
+        allowing you to connect on a deeper level. Engage with potential partners
+        through our platform to discover your ideal match.
+      </p>
+    </motion.div>
+  </div>
 
-        {/* Section 3: You */}
-        <motion.div
-          {...fadeInUp}
-          transition={{ ...fadeInUp.transition, delay: 0.7 }}
-          className="bg-white p-6 rounded-xl shadow-md border-t-4 border-red-600"
-        >
-          <h3 className="text-2xl font-bold text-red-700 mb-4">You</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            We are committed to providing a 100% Shariah-compliant platform that
-            ensures all user interactions are respectful and appropriate. Our
-            guidelines promote meaningful connections while upholding Islamic
-            values, encouraging users to engage in respectful dialogue.
-          </p>
-        </motion.div>
-      </div>
+  {/* Box 3: You */}
+  <div>
+    <h3 className="text-xl font-semibold text-gray-900 mb-4">You</h3>
+    <motion.div
+      {...fadeInUp}
+      transition={{ ...fadeInUp.transition, delay: 0.6 }}
+      className="bg-red-50 text-left p-6 rounded-xl shadow-sm border border-red-100"
+    >
+      <p className="text-sm text-gray-800 leading-relaxed">
+        We are committed to providing a 100% Shariah-compliant platform that
+        ensures all user interactions are respectful and appropriate. Our guidelines
+        promote meaningful connections while upholding Islamic values, encouraging
+        users to engage in respectful dialogue.
+      </p>
+    </motion.div>
+  </div>
+</motion.div>
+
     </section>
   );
 }

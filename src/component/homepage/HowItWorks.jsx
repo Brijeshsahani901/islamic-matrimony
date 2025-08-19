@@ -96,6 +96,7 @@ export default function HowItWorks() {
 
   return (
     <motion.section
+    id="how-it-works"
       className="bg-[#fff5f5] py-20 px-4"
       variants={containerVariants}
       initial="hidden"

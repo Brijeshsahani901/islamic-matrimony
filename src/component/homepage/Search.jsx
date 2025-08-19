@@ -93,7 +93,7 @@ export default function Search() {
       </motion.div>
 
       {/* Profiles Grid */}
-      <div className="mt-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="mt-10 px-10 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {profiles.map((profile, index) => (
           <motion.div
             key={index}
@@ -101,37 +101,36 @@ export default function Search() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
             viewport={{ once: true }}
-            className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 text-center relative overflow-hidden"
+            className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 text-center relative"
           >
-            <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r from-red-500 to-red-700"></div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="w-24 h-24 mx-auto mb-5 transition-transform"
-            >
+            <div className="w-28 h-28 mx-auto mb-5 rounded-full overflow-hidden bg-red-50 flex items-center justify-center">
               <img
                 src={profile.image}
                 alt={profile.name}
-                className="w-full h-full object-cover rounded-full bg-gray-100 border-4 border-white shadow-md"
+                className="w-20 h-20 object-cover"
               />
-            </motion.div>
+            </div>
 
-            <h3 className="font-semibold text-xl text-red-700">
-              {profile.name}
-            </h3>
-            <p className="text-sm text-gray-500 mt-1">
+            <h3 className="text-lg font-bold text-gray-900">{profile.name}</h3>
+            <p className="text-sm text-gray-600 mt-1">
               {profile.age} years old • {profile.gender}
             </p>
 
-            <div className="mt-4 text-sm text-gray-700 leading-relaxed text-left">
-              <strong className="block text-gray-900 mb-1 text-sm">
-                About Me
-              </strong>
-              <p className="line-clamp-4">{profile.about}</p>
+            <div className="mt-4 text-left text-sm text-gray-700">
+              <p className="font-semibold text-gray-800 mb-1">About Me</p>
+              <p>{profile.about}</p>
+            </div>
+
+            {/* Blur bar placeholders */}
+            <div className="mt-6 space-y-2">
+              <div className="h-3 bg-gray-200 rounded-full w-5/5 mx-auto" />
+              <div className="h-3 bg-gray-200 rounded-full w-2/3 mx-auto" />
+              <div className="h-3 bg-gray-200 rounded-full w-3/4 mx-auto" />
             </div>
           </motion.div>
         ))}
       </div>
+
 
       {/* Call to Action */}
       <div className="mt-20 flex justify-center">

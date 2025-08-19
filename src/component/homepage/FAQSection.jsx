@@ -6,44 +6,48 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   {
     question: "What is Marrying Muslims?",
-    answer: "Marrying Muslims is a platform designed to help individuals find compatible marriage partners with family and guardian involvement.",
+    answer: "Marrying Muslims is an Islamic matrimonial platform dedicated to helping practicing Muslims find their life partners in alignment with Islamic principles. Our focus is on upholding Islamic values, encouraging family involvement, and ensuring guardian supervision in all interactions.",
   },
   {
     question: "Who can join Marrying Muslims?",
-    answer: "Anyone seeking a serious and respectful path to marriage can join Marrying Muslims.",
+    answer: "Practicing Sunni Muslims who are serious about marriage in line with Islamic principles are welcome. We embrace both reverts and those born into the faith, as long as they are dedicated to upholding Islamic values..",
   },
   {
     question: "How does guardian (Wali) involvement work?",
-    answer: "Guardians are involved throughout the process to ensure trust, transparency, and religious alignment.",
+    answer: "The Wali can communicate with the third-party Wali by making a respectful introduction.",
   },
   {
     question: "How do I create a profile?",
-    answer: "Click on 'Create Profile' and follow the step-by-step instructions. Make sure to include guardian details if required.",
+    answer: "Click Sign Up and fill out our comprehensive Islamic-focused form. You’ll need to provide personal details, Islamic background, Wali (guardian) contact details, and your expectations for marriage. You must use the Wali contact details when signing up with us, this is to ensure we are doing things the correct way when contact is made.",
   },
   {
     question: "Why do I need guardian information?",
-    answer: "Guardian information ensures a respectful and responsible environment for communication and matchmaking.",
+    answer: "Islamic marriage requires guardian (wali) involvement, especially for women. This ensures proper Islamic procedures are followed and maintains the dignity and protection that Islam provides in the marriage process.",
   },
   {
     question: "How long does profile approval take?",
-    answer: "Profile approvals typically take 24–48 hours after submission.",
+    answer: "Profile approval usually takes 24–48 hours. We manually review each profile to ensure authenticity and sincerity in line with Islamic values.",
   },
   {
     question: "How do I contact someone I’m interested in?",
-    answer: "Once matched or approved, you can message through the platform with guardian oversight.",
+    answer: "Once you have created a profile and it has been approved, you will need to make your payment to access the Wali contact details and reach out to potential matches.",
   },
   {
     question: "Can I talk directly to potential matches?",
-    answer: "Communication is allowed but monitored or facilitated through guardians to maintain Islamic principles.",
+    answer: "Direct communication between non-mahram without guardian supervision is not permitted to maintain Islamic guidelines. All initial contact and arrangements are made through guardians to ensure proper Islamic conduct.",
   },
  
   {
     question: "What behavior is not allowed?",
-    answer: "Disrespect, harassment, and inappropriate content are strictly prohibited and result in immediate suspension.",
+    answer: "Prohibited: Non-Islamic behavior, inappropriate messages, bypassing guardian involvement, false information, non-serious intentions, requesting photos before proper introduction, and any conduct that violates Islamic principles.",
   },
   {
     question: "What happens if Islamic guidlines are violated?",
     answer: "Profiles violating Islamic guidelines will be immediately suspended or permanently banned. We take Islamic compliance very seriously and have zero tolerance for inappropriate behavior.",
+  },
+   {
+    question: "How much does Marrying Muslims Cost?",
+    answer: "Creating and listing your profile on our site is free. However, to view more information about potential matches and their contact details, you must pay a one-time fee of £50. This fee ensures that all profiles represent real individuals.",
   },
   {
     question: "Is there a refund policy?",
@@ -71,9 +75,9 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="bg-rose-50 py-20 px-4">
+    <section id="faq" className="bg-rose-50 py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-red-600 text-white text-center p-6 rounded-lg mb-10">
+        <div className="bg-red-700 text-white text-center p-6 rounded-lg mb-10">
           <h2 className="text-2xl font-bold flex justify-center items-center gap-2">
             <ChevronDown className="w-6 h-6" />
             FAQ
@@ -85,7 +89,7 @@ export default function FAQSection() {
             const isOpen = openIndex === index;
 
             return (
-              <div key={index} className="bg-red-600 rounded-lg overflow-hidden">
+              <div key={index} className="bg-red-700 rounded-lg overflow-hidden">
                 <button
                   className="w-full text-left px-6 py-4 text-white font-semibold flex justify-between items-center"
                   onClick={() => toggle(index)}
