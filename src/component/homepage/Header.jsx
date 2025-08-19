@@ -13,7 +13,8 @@ export default function Header() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
+  <header className="fixed top-0 left-0 w-full bg-white shadow z-[100]">
+
       <div className="mx-4 sm:mx-6 lg:mx-10 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">

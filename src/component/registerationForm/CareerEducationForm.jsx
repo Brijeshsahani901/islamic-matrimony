@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { careerEducationUpdated } from "@/api/profile.api";
+import toast from "react-hot-toast";
 
 const CareerForm = forwardRef(
   ({ initialData = {}, onNext, setLoading }, ref) => {
@@ -39,6 +40,7 @@ const CareerForm = forwardRef(
         }
       },
       onError: (error) => {
+        toast.error(error?.message);
         setLoading(false);
         console.error("API Error:", error);
         // You can also trigger a toast here
@@ -122,6 +124,7 @@ const CareerForm = forwardRef(
                   <option>Bachelor's Degree</option>
                   <option>Master's Degree</option>
                   <option>Ph.D</option>
+                  <option>Diploma</option>
                   <option>Other</option>
                 </select>
                 {errors.education_level && (
@@ -144,9 +147,9 @@ const CareerForm = forwardRef(
                   placeholder="Your occupation"
                   className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 focus:border-red-500 focus:ring-red-500 sm:text-sm"
                 />
-                {errors.profession && (
+                {errors.occupation && (
                   <p className="text-xs text-red-500 mt-1">
-                    {errors.profession}
+                    {errors.occupation}
                   </p>
                 )}
               </div>
@@ -154,7 +157,7 @@ const CareerForm = forwardRef(
               {/* Annual Income */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-900 mb-1">
-                  Annual Income (Optional)
+                  Annual Income
                 </label>
                 <select
                   name="annual_income"
@@ -165,11 +168,18 @@ const CareerForm = forwardRef(
                   <option value="" disabled>
                     Select Income Range
                   </option>
-                  <option>Less than $25,000</option>
-                  <option>$25,000 - $50,000</option>
-                  <option>$50,000 - $100,000</option>
-                  <option>Over $100,000</option>
+                  <option>Under €30,000</option>
+                  <option>€30,000 - €50,000</option>
+                  <option>€50,000 - €75,000</option>
+                  <option>€75,000 -€$100,000</option>
+                  <option>Over €100,000</option>
+                  <option>Prefer not to say</option>
                 </select>
+                {errors.annual_income && (
+                  <p className="text-xs text-red-500 mt-1">
+                    {errors.annual_income}
+                  </p>
+                )}
               </div>
 
               {/* Work Location */}
@@ -185,6 +195,11 @@ const CareerForm = forwardRef(
                   placeholder="City, Country"
                   className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 focus:border-red-500 focus:ring-red-500 sm:text-sm"
                 />
+                {errors.work_location && (
+                  <p className="text-xs text-red-500 mt-1">
+                    {errors.work_location}
+                  </p>
+                )}
               </div>
             </div>
 

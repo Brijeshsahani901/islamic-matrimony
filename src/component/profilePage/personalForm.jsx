@@ -196,16 +196,16 @@ const PersonalInfo = ({ initialData = {}, onSave }) => {
   // Validate fields
   const validate = (data) => {
     const errs = {};
-    if (!data.first_name || data.first_name.trim() === "") {
+    if (!data?.first_name || data?.first_name.trim() === "") {
       errs.first_name = "First name is required";
     }
-    if (!data.last_name || data.last_name.trim() === "") {
+    if (!data?.last_name || data?.last_name.trim() === "") {
       errs.last_name = "Last name is required";
     }
-    if (data.date_of_birth && isNaN(Date.parse(data.date_of_birth))) {
+    if (data?.date_of_birth && isNaN(Date.parse(data?.date_of_birth))) {
       errs.date_of_birth = "Invalid date";
     }
-    if (!data.gender || data.gender.trim() === "") {
+    if (!data?.gender || data?.gender.trim() === "") {
       errs.gender = "Gender is required";
     }
     return errs;
@@ -246,9 +246,9 @@ const PersonalInfo = ({ initialData = {}, onSave }) => {
   // Disable save if errors exist or required fields empty
   const isSaveDisabled =
     Object.keys(errors).length > 0 ||
-    !formData.first_name ||
-    !formData.last_name ||
-    !formData.gender;
+    !formData?.first_name ||
+    !formData?.last_name ||
+    !formData?.gender;
 
   return (
     <div className="relative">
@@ -314,20 +314,20 @@ const PersonalInfo = ({ initialData = {}, onSave }) => {
         <FormField
           label="First Name"
           name="first_name"
-          value={formData.first_name}
+          value={formData?.first_name}
           editable={isEditing}
           onChange={handleChange}
-          error={errors.first_name}
+          error={errors?.first_name}
         />
 
         {/* Last Name */}
         <FormField
           label="Last Name"
           name="last_name"
-          value={formData.last_name}
+          value={formData?.last_name}
           editable={isEditing}
           onChange={handleChange}
-          error={errors.last_name}
+          error={errors?.last_name}
         />
 
         {/* Email (non-editable) */}
@@ -340,28 +340,28 @@ const PersonalInfo = ({ initialData = {}, onSave }) => {
         <FormField
           label="Date of Birth"
           name="date_of_birth"
-          value={formData.date_of_birth}
+          value={formData?.date_of_birth}
           editable={isEditing}
           onChange={handleChange}
           type="date"
-          error={errors.date_of_birth}
+          error={errors?.date_of_birth}
         />
 
         {/* Gender */}
         <FormField
           label="Gender"
           name="gender"
-          value={formData.gender}
+          value={formData?.gender}
           editable={isEditing}
           onChange={handleChange}
-          error={errors.gender}
+          error={errors?.gender}
         />
 
         {/* Health Condition */}
         <FormField
           label="Health Condition"
           name="health_conditions"
-          value={formData.health_conditions}
+          value={formData?.health_conditions}
           editable={isEditing}
           onChange={handleChange}
         />
@@ -370,7 +370,7 @@ const PersonalInfo = ({ initialData = {}, onSave }) => {
         <FormField
           label="Expectation"
           name="expectations"
-          value={formData.expectations}
+          value={formData?.expectations}
           editable={isEditing}
           onChange={handleChange}
         />
@@ -379,7 +379,7 @@ const PersonalInfo = ({ initialData = {}, onSave }) => {
         <FormTextarea
           label="About Yourself"
           name="about_me"
-          value={formData.about_me}
+          value={formData?.about_me}
           editable={isEditing}
           onChange={handleChange}
         />

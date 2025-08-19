@@ -1,18 +1,22 @@
-
-
 "use client";
 import { useState, useEffect } from "react";
 import FilterSidebar from "@/component/search/filterSidebar";
 import { useQuery } from "@tanstack/react-query";
 import ProfileGrid from "@/component/search/profileGrid";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { UserIcon, ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
 import ProfileList from "@/component/search/profileList";
 import { FaTh, FaList, FaSearch, FaFilter } from "react-icons/fa";
 import { fetchProfiles } from "@/api/profile.api";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
+import {
+  HomeIcon,
+  MagnifyingGlassIcon,
+  UserCircleIcon,
+  UserIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 
 const useDebounce = (value, delay = 500) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -98,18 +102,19 @@ export default function Search() {
         <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-          {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
+            {/* <span className="text-red-600 text-2xl font-bold">❤️</span> */}
             <img
-        src="/images/Logo.PNG"
-        alt="Logo"
-        width={100}
-        height={100}
-        className="hover:scale-110 transition-transform duration-500 ease-in-out"
-        priority
-      />
-          <span className="text-xl font-semibold text-red-700">Marrying Muslims</span>
-       
-        </Link>
+              src="/images/Logo.PNG"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="hover:scale-110 transition-transform duration-500 ease-in-out"
+              priority
+            />
+            <span className="text-xl font-semibold text-red-700">
+              Marrying Muslims
+            </span>
+          </Link>
 
           {/* Search Bar - Mobile */}
           {isMobile && (
@@ -130,15 +135,26 @@ export default function Search() {
           )}
 
           {/* Nav Links - Desktop */}
-         <nav className="flex space-x-4 md:space-x-6 text-gray-700 font-medium mr-10">
-
-            <Link href="/dashboard" className="hover:text-red-600 transition gap-4">
+          <nav className="flex space-x-4 md:space-x-6 text-gray-700 font-medium mr-10">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-1 hover:text-red-600 transition"
+            >
+              <HomeIcon className="w-5 h-5" />
               Dashboard
             </Link>
-            <Link href="/search" className="text-red-600 font-semibold">
+            <Link
+              href="/search"
+              className="flex items-center gap-1 text-red-600 font-semibold"
+            >
+              <MagnifyingGlassIcon className="w-5 h-5" />
               Search
             </Link>
-            <Link href="/profile" className="hover:text-red-600 transition">
+            <Link
+              href="/profile"
+              className="flex items-center gap-1 hover:text-red-600 transition"
+            >
+              <UserCircleIcon className="w-5 h-5" />
               Profile
             </Link>
           </nav>
@@ -199,15 +215,13 @@ export default function Search() {
         <div className="flex flex-col md:flex-row gap-6 max-w-[95%] mx-auto">
           {/* Sidebar - Desktop */}
           {!isMobile && (
-        <div className="w-full md:w-72 flex-shrink-0 sticky top-[80px] self-start max-h-[calc(100vh-80px)]">
-  <FilterSidebar
-    filters={filters}
-    setFilters={setFilters}
-    clearFilters={clearFilters}
-  />
-</div>
-
-
+            <div className="w-full md:w-72 flex-shrink-0 sticky top-[80px] self-start max-h-[calc(100vh-80px)]">
+              <FilterSidebar
+                filters={filters}
+                setFilters={setFilters}
+                clearFilters={clearFilters}
+              />
+            </div>
           )}
 
           {/* Mobile Filters Button */}
@@ -417,4 +431,3 @@ export default function Search() {
     </div>
   );
 }
-

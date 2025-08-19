@@ -149,7 +149,7 @@ export default function ProfileGrid({ profiles }) {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div className="w-full h-64 bg-gray-100 rounded-3xl flex items-center justify-center overflow-hidden">
-                  {selectedProfile.profileImages?.[0]?.image_url ? (
+                  {selectedProfile?.profileImages?.[0]?.image_url ? (
                     <img
                       src={selectedProfile.profileImages[0].image_url}
                       alt="Profile"
@@ -165,36 +165,36 @@ export default function ProfileGrid({ profiles }) {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-2xl font-semibold">
-                    {selectedProfile.personalInfo.first_name}{" "}
-                    {selectedProfile.personalInfo.last_name}
+                    {selectedProfile?.personalInfo?.first_name}{" "}
+                    {selectedProfile?.personalInfo?.last_name}
                   </h3>
                   <p className="text-lg text-gray-600">
-                    {calculateAge(selectedProfile.personalInfo.date_of_birth)}{" "}
+                    {calculateAge(selectedProfile?.personalInfo?.date_of_birth)}{" "}
                     years old
                   </p>
                   <p className="flex items-center gap-2">
                     <FaMapMarkerAlt className="text-red-600 inline" />{" "}
-                    {selectedProfile.careerInfo?.work_location ||
-                      selectedProfile.familyInfo?.city ||
+                    {selectedProfile?.careerInfo?.work_location ||
+                      selectedProfile?.familyInfo?.city ||
                       "Unknown"}
                   </p>
                   <p className="flex items-center gap-2">
                     <FaBriefcase className="text-red-600 inline" />{" "}
-                    {selectedProfile.careerInfo?.occupation || "Not specified"}
+                    {selectedProfile?.careerInfo?.occupation || "Not specified"}
                   </p>
                   <p className="flex items-center gap-2">
                     <FaGraduationCap className="text-red-600 inline" />{" "}
-                    {selectedProfile.careerInfo?.education_level ||
+                    {selectedProfile?.careerInfo?.education_level ||
                       "Not specified"}
                   </p>
                   <p className="flex items-center gap-2">
                     <FaHeart className="text-red-600 inline" />{" "}
-                    {selectedProfile.familyInfo?.marital_status || "N/A"}
+                    {selectedProfile?.familyInfo?.marital_status || "N/A"}
                   </p>
                   <span className="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">
-                    {selectedProfile.religiousInfo?.is_sunni_muslims === "Yes"
+                    {selectedProfile?.religiousInfo?.is_sunni_muslims === "Yes"
                       ? "Sunni"
-                      : selectedProfile.religiousInfo?.is_sunni_muslims === "No"
+                      : selectedProfile?.religiousInfo?.is_sunni_muslims === "No"
                       ? "Shia"
                       : "N/A"}
                   </span>
@@ -222,16 +222,16 @@ export default function ProfileGrid({ profiles }) {
                   <>
                     <p>
                       <strong>About Me:</strong>{" "}
-                      {selectedProfile.personalInfo?.about_me ||
+                      {selectedProfile?.personalInfo?.about_me ||
                         "No details provided."}
                     </p>
                     <p>
                       <strong>Health Conditions:</strong>{" "}
-                      {selectedProfile.personalInfo?.health_conditions || "N/A"}
+                      {selectedProfile?.personalInfo?.health_conditions || "N/A"}
                     </p>
                     <p>
                       <strong>Expectations:</strong>{" "}
-                      {selectedProfile.personalInfo?.expectations || "N/A"}
+                      {selectedProfile?.personalInfo?.expectations || "N/A"}
                     </p>
                   </>
                 )}
@@ -240,24 +240,24 @@ export default function ProfileGrid({ profiles }) {
                   <>
                     <p>
                       <strong>Education:</strong>{" "}
-                      {selectedProfile.preferences?.education || "N/A"}
+                      {selectedProfile?.preferences?.education || "N/A"}
                     </p>
                     <p>
                       <strong>Age Range:</strong>{" "}
-                      {selectedProfile.preferences?.min_age} -{" "}
-                      {selectedProfile.preferences?.max_age}
+                      {selectedProfile?.preferences?.min_age} -{" "}
+                      {selectedProfile?.preferences?.max_age}
                     </p>
                     <p>
                       <strong>Marriage Preferred:</strong>{" "}
-                      {selectedProfile.preferences?.marriage_preferred || "N/A"}
+                      {selectedProfile?.preferences?.marriage_preferred || "N/A"}
                     </p>
                     <p>
                       <strong>Location:</strong>{" "}
-                      {selectedProfile.preferences?.location || "N/A"}
+                      {selectedProfile?.preferences?.location || "N/A"}
                     </p>
                     <p>
                       <strong>Willing to Relocate:</strong>{" "}
-                      {selectedProfile.preferences?.relocate || "N/A"}
+                      {selectedProfile?.preferences?.relocate || "N/A"}
                     </p>
                   </>
                 )}
@@ -268,25 +268,25 @@ export default function ProfileGrid({ profiles }) {
                     {/* <p><strong>Revert Muslim:</strong> {selectedProfile.religiousInfo?.is_revert_muslim || "N/A"}</p> */}
                     <p>
                       <strong>Prayer Frequency:</strong>{" "}
-                      {selectedProfile.religiousInfo?.prayer_frequency || "N/A"}
+                      {selectedProfile?.religiousInfo?.prayer_frequency || "N/A"}
                     </p>
                     <p>
                       <strong>Quran Reading:</strong>{" "}
-                      {selectedProfile.religiousInfo?.quran_reading || "N/A"}
+                      {selectedProfile?.religiousInfo?.quran_reading || "N/A"}
                     </p>
                     <p>
                       <strong>Beard:</strong>{" "}
-                      {selectedProfile.religiousInfo?.beard || "N/A"}
+                      {selectedProfile?.religiousInfo?.beard || "N/A"}
                     </p>
                     <p>
                       <strong>Hijab:</strong>{" "}
-                      {selectedProfile.religiousInfo?.hijab || "N/A"}
+                      {selectedProfile?.religiousInfo?.hijab || "N/A"}
                     </p>
                     {/* <p><strong>Occupation:</strong> {selectedProfile.careerInfo?.occupation || "N/A"}</p> */}
                     {/* <p><strong>Annual Income:</strong> {selectedProfile.careerInfo?.annual_income || "N/A"}</p> */}
                     <p>
                       <strong>Work Location:</strong>{" "}
-                      {selectedProfile.careerInfo?.work_location || "N/A"}
+                      {selectedProfile?.careerInfo?.work_location || "N/A"}
                     </p>
                   </>
                 )}

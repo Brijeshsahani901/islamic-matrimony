@@ -3,6 +3,7 @@ import React, { useState, forwardRef } from "react";
 import { useImperativeHandle } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { personalInfoUpdated } from "@/api/profile.api";
+import toast from "react-hot-toast";
 
 const PersonalInfoForm = forwardRef(({ onNext ,setLoading,initialValues  }, ref) => {
 const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ const [formData, setFormData] = useState({
       onNext(formData);
     },
     onError: (error) => {
+          toast.error(error?.message)
        setLoading(false)
       console.error("API error:", error);
     },
@@ -56,7 +58,7 @@ const [formData, setFormData] = useState({
   }));
 
   return (
-    <form className="bg-white mt-2 p-6 rounded-md shadow max-w-3xl mx-auto" onSubmit={(e) => e.preventDefault()}>
+    <form className="bg-white mt-2 p-6 rounded-md shadow w-3xl mx-auto" onSubmit={(e) => e.preventDefault()}>
       <h3 className="text-lg font-semibold mb-1">Personal Info</h3>
       <p className="text-sm text-gray-500 mb-6">
         Tell us about yourself to help us find your perfect match
@@ -74,10 +76,11 @@ const [formData, setFormData] = useState({
             </label>
             <input
               type={type}
+              placeholder={`Enter ${label}`}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
+              className="w-full px-3  py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
             />
             {errors[name] && (
               <p className="text-xs text-red-500 mt-1">{errors[name]}</p>
@@ -93,7 +96,7 @@ const [formData, setFormData] = useState({
             name="gender"
             value={formData.gender}
             onChange={handleChange}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -134,7 +137,7 @@ const [formData, setFormData] = useState({
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition-all"
               rows={rows}
               placeholder={placeholder}
             />

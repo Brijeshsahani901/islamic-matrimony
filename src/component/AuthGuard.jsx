@@ -4,7 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState, ReactNode } from "react";
 import toast from "react-hot-toast";
 
-const publicPaths = ["/", "/login", "/register"];
+const publicPaths = ["/", "/login", "/register","/terms-and-conditions","/privacy-policy"];
 
 export default function AuthGuard({ children }) {
   const router = useRouter();

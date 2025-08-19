@@ -2,6 +2,7 @@
 import { useState, forwardRef, useImperativeHandle } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { religiousInfoUpdated } from "@/api/profile.api";
+import toast from "react-hot-toast";
 
 const ReligiousInfoForm = forwardRef(({ onNext,setLoading,initialValues }, ref) => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ const ReligiousInfoForm = forwardRef(({ onNext,setLoading,initialValues }, ref) 
     },
     onError: (error) => {
        setLoading(false)
+           toast.error(error?.message)
       console.error("API error:", error);
       // Optionally show error toast or message
     },
@@ -65,7 +67,7 @@ const ReligiousInfoForm = forwardRef(({ onNext,setLoading,initialValues }, ref) 
   }));
 
   return (
-    <div className="w-2xl">
+    <div className="w-3xl">
       <div className="bg-white border border-gray-200 rounded-lg p-6">
         <h2 className="flex items-center text-2xl font-semibold text-gray-900 mb-1">
           <svg
@@ -95,17 +97,17 @@ const ReligiousInfoForm = forwardRef(({ onNext,setLoading,initialValues }, ref) 
               {
                 name: "is_sunni_muslims",
                 label: "Are you a Sunni Muslim?",
-                options: ["Yes", "No", "Prefer Not to Say"],
+                options: ["Yes Sunni"],
               },
               {
                 name: "is_revert_muslim",
                 label: "Are You a Revert Muslim?",
-                options: ["Yes", "No", "Prefer Not to Say"],
+                options: ["Yes", "No"],
               },
               {
                 name: "prayer_frequency",
                 label: "Prayer Frequency",
-                options: ["Rarely", "Sometimes", "Regularly", "Always"],
+                options: ["Always", "Often", "Sometimes", "Never"],
               },
               {
                 name: "quran_reading",
@@ -115,12 +117,12 @@ const ReligiousInfoForm = forwardRef(({ onNext,setLoading,initialValues }, ref) 
               {
                 name: "hijab",
                 label: "Hijab",
-                options: ["Wear Hijab", "Occasionally", "Do Not Wear"],
+                options: ["Niqab", "Hijab", "None"],
               },
               {
                 name: "beard",
                 label: "Beard",
-                options: ["Keep Beard", "Trimmed", "Clean Shaven"],
+                options: ["Full Beard", "Trimmed", "Mustache Only","Clean Shave"],
               },
             ].map(({ name, label, options }) => (
               <div key={name}>

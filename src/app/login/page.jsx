@@ -164,13 +164,13 @@ export default function Login() {
           className="text-xs text-center text-gray-400 mt-4"
         >
           By signing in, you agree to our{" "}
-          <Link href="#" className="text-red-500 hover:underline">
+          <Link href="/terms-and-conditions" className="text-red-500 hover:underline">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <a href="#" className="text-red-500 hover:underline">
+          <Link href="/privacy-policy" className="text-red-500 hover:underline">
             Privacy Policy
-          </a>
+          </Link>
           .
         </motion.p>
       </motion.div>

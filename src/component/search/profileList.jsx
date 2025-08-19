@@ -316,7 +316,7 @@ export default function ProfileList({ profiles }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div className="w-full h-64 bg-gray-100 rounded-3xl flex items-center justify-center overflow-hidden">
-                   {selectedProfile.profileImages?.[0]?.image_url ? (
+                   {selectedProfile?.profileImages?.[0]?.image_url ? (
                     <img
                       src={selectedProfile.profileImages[0].image_url}
                       alt="Profile"
@@ -332,26 +332,26 @@ export default function ProfileList({ profiles }) {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-2xl font-semibold">
-                    {selectedProfile.personalInfo?.first_name} {selectedProfile.personalInfo?.last_name}
+                    {selectedProfile?.personalInfo?.first_name} {selectedProfile.personalInfo?.last_name}
                   </h3>
                   <p className="text-lg text-gray-600">
-                    {calculateAge(selectedProfile.personalInfo?.date_of_birth)} years old
+                    {calculateAge(selectedProfile?.personalInfo?.date_of_birth)} years old
                   </p>
                   <p>
                     <FaMapMarkerAlt className="inline text-red-600" />{' '}
-                    {selectedProfile.careerInfo?.work_location || selectedProfile.familyInfo?.city || 'N/A'}
+                    {selectedProfile?.careerInfo?.work_location || selectedProfile?.familyInfo?.city || 'N/A'}
                   </p>
                   <p>
-                    <FaBriefcase className="inline text-red-600" /> {selectedProfile.careerInfo?.occupation || 'N/A'}
+                    <FaBriefcase className="inline text-red-600" /> {selectedProfile?.careerInfo?.occupation || 'N/A'}
                   </p>
                   <p>
-                    <FaGraduationCap className="inline text-red-600" /> {selectedProfile.careerInfo?.education_level || 'N/A'}
+                    <FaGraduationCap className="inline text-red-600" /> {selectedProfile?.careerInfo?.education_level || 'N/A'}
                   </p>
                   <p>
-                    <FaHeart className="inline text-red-600" /> {selectedProfile.familyInfo?.marital_status || 'N/A'}
+                    <FaHeart className="inline text-red-600" /> {selectedProfile?.familyInfo?.marital_status || 'N/A'}
                   </p>
                   <span className="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">
-                    {selectedProfile.religiousInfo?.is_sunni_muslims === 'Yes' ? 'Sunni' : 'Shia'}
+                    {selectedProfile?.religiousInfo?.is_sunni_muslims === 'Yes' ? 'Sunni' : 'Shia'}
                   </span>
                 </div>
               </div>
@@ -376,51 +376,51 @@ export default function ProfileList({ profiles }) {
                 {activeTab === 'about' && (
                   <>
                     <p>
-                      <strong>About Me:</strong> {selectedProfile.personalInfo?.about_me || 'No details provided.'}
+                      <strong>About Me:</strong> {selectedProfile?.personalInfo?.about_me || 'No details provided.'}
                     </p>
                     <p>
-                      <strong>Health Conditions:</strong> {selectedProfile.personalInfo?.health_conditions || 'N/A'}
+                      <strong>Health Conditions:</strong> {selectedProfile?.personalInfo?.health_conditions || 'N/A'}
                     </p>
                     <p>
-                      <strong>Expectations:</strong> {selectedProfile.personalInfo?.expectations || 'N/A'}
+                      <strong>Expectations:</strong> {selectedProfile?.personalInfo?.expectations || 'N/A'}
                     </p>
                   </>
                 )}
                 {activeTab === 'preferences' && (
                   <>
                     <p>
-                      <strong>Education:</strong> {selectedProfile.preferences?.education || 'N/A'}
+                      <strong>Education:</strong> {selectedProfile?.preferences?.education || 'N/A'}
                     </p>
                     <p>
-                      <strong>Age Range:</strong> {selectedProfile.preferences?.min_age} - {selectedProfile.preferences?.max_age}
+                      <strong>Age Range:</strong> {selectedProfile?.preferences?.min_age} - {selectedProfile?.preferences?.max_age}
                     </p>
                     <p>
-                      <strong>Marriage Preferred:</strong> {selectedProfile.preferences?.marriage_preferred || 'N/A'}
+                      <strong>Marriage Preferred:</strong> {selectedProfile?.preferences?.marriage_preferred || 'N/A'}
                     </p>
                     <p>
-                      <strong>Location Preference:</strong> {selectedProfile.preferences?.location || 'N/A'}
+                      <strong>Location Preference:</strong> {selectedProfile?.preferences?.location || 'N/A'}
                     </p>
                     <p>
-                      <strong>Willing to Relocate:</strong> {selectedProfile.preferences?.relocate || 'N/A'}
+                      <strong>Willing to Relocate:</strong> {selectedProfile?.preferences?.relocate || 'N/A'}
                     </p>
                   </>
                 )}
                 {activeTab === 'lifestyle' && (
                   <>
                     <p>
-                      <strong>Prayer Frequency:</strong> {selectedProfile.religiousInfo?.prayer_frequency || 'N/A'}
+                      <strong>Prayer Frequency:</strong> {selectedProfile?.religiousInfo?.prayer_frequency || 'N/A'}
                     </p>
                     <p>
-                      <strong>Quran Reading:</strong> {selectedProfile.religiousInfo?.quran_reading || 'N/A'}
+                      <strong>Quran Reading:</strong> {selectedProfile?.religiousInfo?.quran_reading || 'N/A'}
                     </p>
                     <p>
-                      <strong>Beard:</strong> {selectedProfile.religiousInfo?.beard || 'N/A'}
+                      <strong>Beard:</strong> {selectedProfile?.religiousInfo?.beard || 'N/A'}
                     </p>
                     <p>
-                      <strong>Hijab:</strong> {selectedProfile.religiousInfo?.hijab || 'N/A'}
+                      <strong>Hijab:</strong> {selectedProfile?.religiousInfo?.hijab || 'N/A'}
                     </p>
                     <p>
-                      <strong>Work Location:</strong> {selectedProfile.careerInfo?.work_location || 'N/A'}
+                      <strong>Work Location:</strong> {selectedProfile?.careerInfo?.work_location || 'N/A'}
                     </p>
                   </>
                 )}

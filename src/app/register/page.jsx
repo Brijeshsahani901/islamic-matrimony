@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState } from "react";
@@ -11,6 +9,7 @@ import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiUser, FiLock } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const router = useRouter();
@@ -25,12 +24,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const {
-    mutate,
-    isPending,
-    isError,
-    error,
-  } = useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: async () => {
       const payload = {
         username: form.username,
@@ -44,9 +38,15 @@ export default function Register() {
     },
     onSuccess: (data) => {
       const token = data?.data?.token;
+      toast.success("Account created successfully!");
       sessionStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(data.data.user));
+
       router.push("/complete-profile");
+    },
+     onError: (err) => {
+      console.error(err);
+      toast.error(err.message || "Registeration failed. Please try again.");
     },
   });
 
@@ -67,26 +67,29 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white flex flex-col items-center justify-center px-4">
-        
       <motion.div {...fadeInUp} className="w-full max-w-md mb-6  mt-10">
-         <div className="mb-4">
-        <a href="/" className="text-sm text-gray-500 hover:underline">
-          ← Back to Home
-        </a>
-      </div>
+        <div className="mb-4">
+          <a href="/" className="text-sm text-gray-500 hover:underline">
+            ← Back to Home
+          </a>
+        </div>
         <div className="flex items-center">
           {/* <span className="text-4xl text-red-600">❤️</span> */}
-              <img
-                  src="/images/Logo.PNG"
-                  alt="Logo"
-                  width={100}
-                  height={100}
-                  className="hover:scale-110 transition-transform duration-500 ease-in-out"
-                  priority
-                />
+          <img
+            src="/images/Logo.PNG"
+            alt="Logo"
+            width={100}
+            height={100}
+            className="hover:scale-110 transition-transform duration-500 ease-in-out"
+            priority
+          />
           <div>
-            <h1 className="text-2xl font-bold text-red-700">Marrying Muslims</h1>
-            <p className="text-xs text-gray-600 -mt-1">Marriage The Halal Way</p>
+            <h1 className="text-2xl font-bold text-red-700">
+              Marrying Muslims
+            </h1>
+            <p className="text-xs text-gray-600 -mt-1">
+              Marriage The Halal Way
+            </p>
           </div>
         </div>
         <p className="text-sm text-gray-600 mt-2">
@@ -107,7 +110,9 @@ export default function Register() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Username */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Username</label>
+            <label className="text-sm font-medium text-gray-700">
+              Username
+            </label>
             <div className="relative">
               <FiUser className="absolute left-3 top-3 text-gray-400" />
               <input
@@ -158,7 +163,9 @@ export default function Register() {
 
           {/* Password */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Password</label>
+            <label className="text-sm font-medium text-gray-700">
+              Password
+            </label>
             <div className="relative">
               <FiLock className="absolute left-3 top-3 text-gray-400" />
               <input
@@ -207,7 +214,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md transition duration-200 cursor-pointer"
+             className="w-full cursor-pointer bg-red-600 text-white py-2.5 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md font-medium disabled:opacity-70"
           >
             {isPending ? "Creating..." : "Create Account"}
           </button>
@@ -237,7 +244,7 @@ export default function Register() {
                     <ul className="list-disc list-inside text-sm mt-1 space-y-1">
                       {Object.entries(error?.errors || {}).map(
                         ([key, messages]) =>
-                                                  messages.map((msg, i) => (
+                          messages.map((msg, i) => (
                             <li key={`${key}-${i}`}>{msg}</li>
                           ))
                       )}
@@ -251,14 +258,14 @@ export default function Register() {
 
         <p className="text-sm text-center mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-red-600 font-medium hover:underline ">
+          <Link
+            href="/login"
+            className="text-red-600 font-medium hover:underline "
+          >
             Sign in here
           </Link>
         </p>
       </motion.div>
-
-   
     </div>
   );
 }
-

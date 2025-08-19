@@ -8,6 +8,7 @@ import {
   privacyUpdated,
   getUserProfileById,
 } from "@/api/profile.api";
+import { HomeIcon } from "@heroicons/react/24/outline";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -75,24 +76,25 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="relative top-0 left-0 w-full bg-white shadow z-50">
-        <div className="mx-10 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
+      <header className="fixed top-0 mb-16 left-0 w-full bg-white shadow z-50">
+        <div className="mx-10 sm:px-6 lg:px-10 h-16 flex items-center justify-between ">
           <div className="flex items-center space-x-1">
             {/* <span className="text-red-600 text-4xl font-bold">❤️</span> */}
-              <img
-                              src="/images/Logo.PNG"
-                              alt="Logo"
-                              width={100}
-                              height={100}
-                              className="hover:scale-110 transition-transform duration-500 ease-in-out"
-                              priority
-                            />
+            <img
+              src="/images/Logo.PNG"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="hover:scale-110 transition-transform duration-500 ease-in-out"
+              priority
+            />
             <span className="text-xl font-semibold text-red-700">
               Marrying Muslims
             </span>
           </div>
 
-          <Link href="/dashboard" className="text-lg">
+          <Link href="/dashboard"  className="flex items-center gap-1 hover:text-red-600 transition">
+            <HomeIcon className="w-5 h-5" />
             Dashboard
           </Link>
 
@@ -142,7 +144,7 @@ export default function ProfilePage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto p-4">
+      <div className="max-w-4xl mx-auto p-4 pt-20">
         <UserInfoCard userProfile={userProfile} />
 
         <ProfileTabs activeTab={activeTab} setActiveTab={setActiveTab} />

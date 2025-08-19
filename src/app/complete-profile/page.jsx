@@ -131,7 +131,7 @@ export default function MultiStepForm() {
       </header>
 
       <div className="min-h-screen bg-red-50 p-6 flex flex-col">
-        <div className="w-2xl mx-auto">
+        <div className="w-3xl mx-auto">
           {/* Header and Step Indicator */}
           <div className="mb-4 flex justify-between items-center">
             <h2 className="text-2xl font-semibold text-gray-900 flex items-center space-x-1">

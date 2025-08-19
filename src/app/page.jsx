@@ -73,44 +73,43 @@ export default function Home() {
   const scrollRef = useRef(null);
   const locoScroll = useRef(null);
 
-  useEffect(() => {
-    if (!scrollRef.current) return;
+useEffect(() => {
+  const isMobile = window.innerWidth <= 768;
 
-    const isMobile = window.innerWidth <= 768;
+  if (!scrollRef.current || isMobile) return; // ✅ Skip initialization on mobile
 
-    locoScroll.current = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      multiplier: isMobile ? 1.8 : 1.0, // ✅ Fast scroll on mobile, normal on desktop
-      lerp: 0.1,
-      smartphone: {
-        smooth: true,
-        multiplier: 1.8, // ✅ Fast scroll on mobile
-      },
-      tablet: {
-        smooth: true,
-        multiplier: 1.8, // ✅ Optional: also fast on tablets
-      },
-    });
+  locoScroll.current = new LocomotiveScroll({
+    el: scrollRef.current,
+    smooth: true,
+    multiplier: 1.0,
+    lerp: 0.1,
+  });
 
-    return () => {
-      if (locoScroll.current) {
-        locoScroll.current.destroy();
-        locoScroll.current = null;
-      }
-    };
-  }, []);
+  return () => {
+    if (locoScroll.current) {
+      locoScroll.current.destroy();
+      locoScroll.current = null;
+    }
+  };
+}, []);
+
 
   return (
-    <div data-scroll-container ref={scrollRef}>
+    <>
+      {/* Header is now OUTSIDE locomotive-scroll container */}
       <Header />
-      <HeroSection />
-      <Search />
-      <HowItWorks />
-      <SuccessStories />
-      <FAQSection />
-      <CTASection />
-      <Footer />
-    </div>
+
+      {/* Scrollable content */}
+      <div data-scroll-container ref={scrollRef} className="pt-16">
+        <HeroSection />
+        <Search />
+        <HowItWorks />
+        <SuccessStories />
+        <FAQSection />
+        <CTASection />
+        <Footer />
+      </div>
+    </>
   );
 }
+

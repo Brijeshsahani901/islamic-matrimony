@@ -104,7 +104,6 @@ function calculateAge(dobString) {
 }
 
 export default function UserInfoCard({ userProfile }) {
-  console.log(userProfile)
   const {
     personalInfo = {
       first_name: "Your ",
@@ -120,14 +119,14 @@ export default function UserInfoCard({ userProfile }) {
     },
   } = userProfile || {};
 
-  const fullName = `${personalInfo.first_name} ${personalInfo.last_name}`;
-  const ageValue = calculateAge(personalInfo.date_of_birth);
+  const fullName = `${personalInfo?.first_name} ${personalInfo?.last_name}`;
+  const ageValue = calculateAge(personalInfo?.date_of_birth);
   const age = ageValue ? `${ageValue} years old` : "Age not set";
-  const gender = personalInfo.gender || "N/A";
-  const maritalStatus = personalInfo.marital_status || "N/A";
-  const location = personalInfo.location || "Unknown location";
-  const profession = careerInfo.profession || "Not specified";
-  const education = careerInfo.education_level || "Not specified";
+  const gender = personalInfo?.gender || "N/A";
+  const maritalStatus = personalInfo?.marital_status || "N/A";
+  const location = personalInfo?.location || "Unknown location";
+  const profession = careerInfo?.profession || "Not specified";
+  const education = careerInfo?.education_level || "Not specified";
 
   return (
     <div className="bg-white p-6 rounded-xl shadow max-w-4xl mx-auto">
